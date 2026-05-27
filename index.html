@@ -1074,6 +1074,7 @@ code {
 
     <div class="nav-section">
       <div class="nav-section-title">Дополнительно</div>
+      <div class="nav-item" onclick="showPage('piano')"><span class="nav-icon">🎹</span> Piano Roll</div>
       <div class="nav-item" onclick="showPage('audio-editor')"><span class="nav-icon">🎛️</span> Аудиоредактор</div>
       <div class="nav-item" onclick="showPage('test')"><span class="nav-icon">📝</span> Тестирование (30)</div>
     </div>
@@ -2716,6 +2717,7 @@ function initPianoRollLec5() {
   vc.width = PR_L5_COLS * PR_L5_COL_W; vc.style.width = vc.width + 'px';
 
   const keys = document.getElementById('pr-keys-lec5');
+  keys.innerHTML = '';
   const noteNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
   for (let i = PR_L5_ROWS - 1; i >= 0; i--) {
     const midi = PR_L5_FROM + i;
