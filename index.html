@@ -445,7 +445,7 @@ code {
 .callout.success { border-color: var(--accent2); background: rgba(129,199,132,0.1); }
 
 /* REAPER INTERFACE */
-#reaper-sim {
+#reaper-sim, #reaper-sim-lec2 {
   background: #1a1a1a;
   border: 1px solid #444;
   border-radius: 8px;
@@ -681,12 +681,13 @@ code {
 }
 
 /* PIANO ROLL */
-#piano-roll-container {
+#piano-roll-container, #piano-roll-container-lec5 {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
   margin: 20px 0;
+  width: 100%;
 }
 
 .pr-header {
@@ -772,6 +773,7 @@ code {
   flex: 1;
   overflow: auto;
   position: relative;
+  min-width: 0;
 }
 
 #pr-canvas {
@@ -1071,9 +1073,8 @@ code {
     </div>
 
     <div class="nav-section">
-      <div class="nav-section-title">Интерактив</div>
-      <div class="nav-item" onclick="showPage('piano')"><span class="nav-icon">🎹</span> Mini Piano Roll</div>
-      <div class="nav-item" onclick="showPage('reaper-ui')"><span class="nav-icon">🖥️</span> Интерфейс REAPER</div>
+      <div class="nav-section-title">Дополнительно</div>
+      <div class="nav-item" onclick="showPage('audio-editor')"><span class="nav-icon">🎛️</span> Аудиоредактор</div>
       <div class="nav-item" onclick="showPage('test')"><span class="nav-icon">📝</span> Тестирование (30)</div>
     </div>
   </nav>
@@ -1083,7 +1084,6 @@ code {
     <div class="theme-btns">
       <button class="theme-btn active" onclick="setTheme('dark', this)">Тёмная</button>
       <button class="theme-btn" onclick="setTheme('light', this)">Светлая</button>
-      <button class="theme-btn" onclick="setTheme('reaper', this)">Reaper</button>
     </div>
   </div>
 </aside>
@@ -1199,6 +1199,84 @@ code {
       <p><strong>Файл</strong> — всё, связанное с проектом: открытие, сохранение, создание, рендеринг. <strong>Правка</strong> — история изменений, копирование, вставка. <strong>Вставить</strong> — импорт аудио и маркировка частей проекта. <strong>Действия</strong> — журнал всех выполненных действий. <strong>Элементы</strong> — полная работа с выделенными объектами. <strong>Трек</strong> — работа с дорожками. <strong>Опции</strong> — сердце программы, все настройки. <strong>Расширения</strong> — появляется после установки SWS.</p>
     </div>
     <div class="section"><div class="section-label">✅ Вывод</div><p>Понимание структуры интерфейса REAPER — фундамент эффективной работы. Горячие клавиши ускоряют процесс многократно. Рекомендуется постепенно добавлять свои комбинации по мере освоения программы.</p></div>
+
+    <!-- Симуляция интерфейса встроена в лекцию -->
+    <div class="section" style="margin-top:24px;">
+      <div class="section-label">🖥️ Симуляция интерфейса REAPER</div>
+      <p style="color:var(--text-dim); margin-bottom:16px; font-size:13px;">Нажимайте на элементы интерфейса — появятся подсказки с описанием</p>
+      <div id="reaper-sim-lec2">
+        <div class="r-menubar" id="r-menubar-lec2">
+          <div class="r-menu-item" data-tip-title="Файл" data-tip="Открытие, сохранение, создание и рендеринг проектов. Клавиши: Ctrl+N, Ctrl+S, Ctrl+Alt+R">Файл</div>
+          <div class="r-menu-item" data-tip-title="Правка" data-tip="История изменений, копирование, вставка, отмена действий. Ctrl+Z = отмена">Правка</div>
+          <div class="r-menu-item" data-tip-title="Вставить" data-tip="Импорт аудиофайлов, вставка маркеров и регионов в проект">Вставить</div>
+          <div class="r-menu-item" data-tip-title="Действия" data-tip="Журнал всех выполненных операций в проекте. Shift+? открывает список действий">Действия</div>
+          <div class="r-menu-item" data-tip-title="Элементы" data-tip="Работа с выделенными клипами: обрезка, группировка, свойства, FX">Элементы</div>
+          <div class="r-menu-item" data-tip-title="Трек" data-tip="Создание, удаление, дублирование дорожек. Добавление виртуальных инструментов">Трек</div>
+          <div class="r-menu-item" data-tip-title="Опции" data-tip="Главные настройки REAPER: запись, вид, программа. Ctrl+P = полные настройки">Опции</div>
+          <div class="r-menu-item" data-tip-title="Вид" data-tip="Управление видимостью панелей: FX-браузер, микшер, мониторинг, видео">Вид</div>
+          <div class="r-menu-item" data-tip-title="Расширения (SWS)" data-tip="Вкладка появляется после установки SWS. Авторендер, субтитры, дополнительные действия">Расширения</div>
+          <div class="r-menu-item" data-tip-title="Справка" data-tip="Документация, версия программы, информация о лицензии">Справка</div>
+        </div>
+        <div class="r-toolbar">
+          <div class="r-btn" data-tip-title="Режим курсора" data-tip="Стандартный инструмент для выделения и перемещения клипов. Горячая клавиша: Escape">✦ Курсор</div>
+          <div class="r-btn" data-tip-title="Обрезка" data-tip="Инструмент обрезки клипов. Нажмите ПКМ и тяните край клипа для изменения длины">✂ Обрезка</div>
+          <div class="r-btn" data-tip-title="Привязка к сетке (Snap)" data-tip="Alt+S — включает/выключает привязку к сетке. Помогает точно выравнивать клипы">⊞ Snap</div>
+          <div class="r-btn" data-tip-title="Ripple Edit" data-tip="Alt+P — Ripple-редактирование. При удалении клипа все последующие сдвигаются влево">↔ Ripple</div>
+          <div class="r-btn" data-tip-title="Кроссфейд" data-tip="Alt+X — автоматические кроссфейды при перекрытии клипов. Плавный переход">⬡ Fade</div>
+          <div class="r-btn" data-tip-title="Метроном" data-tip="Клик-трек для поддержания темпа при записи. Настраивается в параметрах проекта">♪ Metronome</div>
+          <div class="r-btn" data-tip-title="Петля (Loop)" data-tip="R — включает/выключает воспроизведение по кругу. Нужно для повторного прослушивания фрагмента">⟳ Loop</div>
+          <div class="r-btn" data-tip-title="Масштаб +" data-tip="Ctrl+колёсико мыши — горизонтальный зум. Ctrl+Alt+колёсико — вертикальный зум треков">⊕ Zoom+</div>
+        </div>
+        <div class="r-transport">
+          <div class="r-transport-btn" data-tip-title="В начало" data-tip="Home — переместить курсор в самое начало проекта (позиция 0:00:00)">⏮</div>
+          <div class="r-transport-btn play-btn" id="r-play-btn-lec2" data-tip-title="Воспроизведение / Стоп" data-tip="Пробел — воспроизведение или остановка. Enter — воспроизведение/пауза" onclick="rTogglePlayLec2()">▶</div>
+          <div class="r-transport-btn record-btn" data-tip-title="Запись" data-tip="Ctrl+R — начать запись. Дорожка должна быть в режиме «Готов к записи» (красная кнопка)">⏺</div>
+          <div class="r-transport-btn" data-tip-title="В конец" data-tip="End — переместить курсор в конец последнего клипа проекта">⏭</div>
+          <div class="r-time" id="r-time-display-lec2" data-tip-title="Позиция курсора" data-tip="Текущее положение курсора в формате Минуты:Секунды:Миллисекунды">0:00.000</div>
+          <div class="r-bpm" data-tip-title="Темп проекта (BPM)" data-tip="Удары в минуту. Двойной клик для изменения. Влияет на сетку и MIDI при установке шкалы времени в «Такты»">♩ 120 BPM</div>
+        </div>
+        <div class="r-workspace">
+          <div class="r-tracks-panel">
+            <div class="r-track-ctrl selected" data-tip-title="Дорожка 1: Drums" data-tip="Панель дорожки. Кнопки (слева направо): Запись (R), Mute (M), Solo (S). Фейдер управляет громкостью всей дорожки">
+              <div class="r-track-name">Drums</div>
+              <div class="r-track-btns">
+                <div class="r-track-btn arm" data-tip-title="Готов к записи" data-tip="Дорожка в режиме записи. Ctrl+R начнёт запись именно на неё">R</div>
+                <div class="r-track-btn" data-tip-title="Mute" data-tip="Заглушить дорожку. Заглушенный трек не слышен при воспроизведении и рендеринге">M</div>
+                <div class="r-track-btn" data-tip-title="Solo" data-tip="Оставить слышимой только эту дорожку">S</div>
+              </div>
+            </div>
+            <div class="r-track-ctrl" data-tip-title="Дорожка 2: Bass" data-tip="Бас-дорожка. Создайте через двойной клик в пустой области панели дорожек или Ctrl+T">
+              <div class="r-track-name">Bass</div>
+              <div class="r-track-btns">
+                <div class="r-track-btn" data-tip-title="Готов к записи" data-tip="Включите перед записью на эту дорожку">R</div>
+                <div class="r-track-btn muted" data-tip-title="Mute активен" data-tip="Дорожка заглушена — не будет слышна при воспроизведении">M</div>
+                <div class="r-track-btn" data-tip-title="Solo" data-tip="Оставить только эту дорожку слышимой">S</div>
+              </div>
+            </div>
+            <div class="r-track-ctrl" data-tip-title="Дорожка 3: Vocal" data-tip="Вокальная дорожка. Обычно требует EQ и компрессии">
+              <div class="r-track-name">Vocal</div>
+              <div class="r-track-btns">
+                <div class="r-track-btn" data-tip-title="Готов к записи" data-tip="Включите для записи вокала">R</div>
+                <div class="r-track-btn" data-tip-title="Mute" data-tip="Заглушить вокал">M</div>
+                <div class="r-track-btn" data-tip-title="Solo" data-tip="Слушать только вокал">S</div>
+              </div>
+            </div>
+          </div>
+          <div class="r-timeline">
+            <div class="r-ruler">
+              <div class="r-ruler-mark">0:00</div><div class="r-ruler-mark">0:15</div>
+              <div class="r-ruler-mark">0:30</div><div class="r-ruler-mark">0:45</div>
+              <div class="r-ruler-mark">1:00</div><div class="r-ruler-mark">1:15</div>
+            </div>
+            <div class="r-clips">
+              <div class="r-clip-row"><div class="r-clip" style="left:0%;width:30%" data-tip-title="Аудиоклип: Drums Loop" data-tip="Клип на дорожке. S — разделить, Delete — удалить, тяните край для обрезки/восстановления"><div class="r-clip-name">Drums Loop</div></div></div>
+              <div class="r-clip-row"><div class="r-clip" style="left:5%;width:40%" data-tip-title="Аудиоклип: Bass Line" data-tip="Клип на дорожке Bass. Перетащите для смещения, тяните правый край для изменения длины"><div class="r-clip-name">Bass Line</div></div></div>
+              <div class="r-clip-row"><div class="r-clip" style="left:10%;width:50%" data-tip-title="Аудиоклип: Vocal Take 1" data-tip="Вокальный клип. FX на клипе — цепочка плагинов именно для этого фрагмента"><div class="r-clip-name">Vocal Take 1</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- LECTURE 3 -->
@@ -1327,9 +1405,62 @@ code {
           <tr><td>CC (Control Change)</td><td>Управляющие сообщения: модуляция, панорама, экспрессия</td></tr>
         </table>
       </div>
-      <div class="callout">💡 Попробуй встроенный Mini Piano Roll в разделе «🎹 Mini Piano Roll» этого сайта!</div>
+
     </div>
     <div class="section"><div class="section-label">✅ Вывод</div><p>MIDI открывает безграничные возможности для создания музыки. Piano Roll REAPER — один из самых удобных редакторов нот. Квантайз и velocity — два ключевых инструмента профессиональной MIDI-работы.</p></div>
+
+    <!-- Mini Piano Roll встроен в лекцию -->
+    <div class="section" style="margin-top:24px;">
+      <div class="section-label">🎹 Мини Piano Roll — попробуй сам</div>
+      <div id="piano-roll-container-lec5">
+        <div class="pr-header">
+          <h3>🎹 Piano Roll</h3>
+          <div class="pr-controls">
+            <select class="pr-select" id="pr-quantize-lec5">
+              <option value="0.5">Квантайз: 1/2</option>
+              <option value="0.25" selected>Квантайз: 1/4</option>
+              <option value="0.125">Квантайз: 1/8</option>
+              <option value="0.0625">Квантайз: 1/16</option>
+            </select>
+            <select class="pr-select" id="pr-instrument-lec5">
+              <option value="sine">Синус</option>
+              <option value="square">Квадрат</option>
+              <option value="sawtooth">Пила</option>
+              <option value="triangle">Треугольник</option>
+            </select>
+            <button class="pr-btn" id="pr-play-btn-lec5" onclick="prTogglePlayLec5()">▶ Играть</button>
+            <button class="pr-btn" onclick="prClearLec5()">🗑 Очистить</button>
+            <button class="pr-btn" onclick="prQuantizeAllLec5()">⚡ Квантайз</button>
+          </div>
+        </div>
+        <!-- Полоска воспроизведения -->
+        <div id="pr-playbar-lec5" style="background:var(--surface2);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:12px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);">Позиция:</span>
+          <div style="flex:1;height:6px;background:var(--border);border-radius:3px;position:relative;cursor:pointer;" id="pr-seek-bar-lec5">
+            <div id="pr-seek-fill-lec5" style="height:100%;width:0%;background:var(--accent);border-radius:3px;transition:width 0.05s;"></div>
+            <div id="pr-seek-head-lec5" style="position:absolute;top:50%;left:0%;transform:translate(-50%,-50%);width:12px;height:12px;background:var(--accent);border-radius:50%;border:2px solid var(--bg);"></div>
+          </div>
+          <span id="pr-time-lec5" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);min-width:40px;">0.00s</span>
+        </div>
+        <div class="pr-body">
+          <div class="pr-piano-keys" id="pr-keys-lec5"></div>
+          <div class="pr-grid-container" id="pr-grid-container-lec5">
+            <canvas id="pr-canvas-lec5"></canvas>
+          </div>
+        </div>
+        <div class="pr-velocity-panel">
+          <div class="pr-vel-label">Velocity (сила нажатия)</div>
+          <canvas id="vel-canvas-lec5" height="60"></canvas>
+        </div>
+      </div>
+      <ul class="styled-list" style="margin-top:16px;">
+        <li><strong>Нарисовать ноту:</strong> кликните на сетке Piano Roll</li>
+        <li><strong>Удалить ноту:</strong> кликните правой кнопкой мыши</li>
+        <li><strong>Velocity:</strong> кликните на столбик внизу и тяните вверх/вниз</li>
+        <li><strong>Квантайз:</strong> выберите сетку и нажмите «Квантайз»</li>
+        <li><strong>Воспроизведение:</strong> кнопка ▶ Играть — полоска показывает текущую позицию</li>
+      </ul>
+    </div>
   </div>
 
   <!-- LECTURE 6 -->
@@ -1499,7 +1630,7 @@ code {
       <p>Трек → Вставить виртуальный инструмент на новый трек → выберите синтезатор (например, ReaSynth). Дважды кликните на пустой области дорожки → создастся MIDI-клип. Дважды кликните по клипу — откроется Piano Roll.</p>
       <h3 style="margin-top:16px;">Рисование нот в Piano Roll</h3>
       <p>Выберите инструмент «Карандаш» (Draw). Кликните на сетке, чтобы нарисовать ноту. Длину ноты регулируйте, тянув правый край. Velocity каждой ноты видна внизу — кликните по столбику и тяните.</p>
-      <div class="callout">💡 Используйте мини Piano Roll на этом сайте для практики рисования нот перед работой в REAPER</div>
+
     </div>
     <div class="section"><div class="section-label">✅ Вывод</div><p>Запись живого звука и MIDI — два базовых способа создания контента в REAPER. Их комбинирование даёт максимальные творческие возможности. MIDI особенно удобен для создания инструментальных партий без реальных инструментов.</p></div>
   </div>
@@ -1651,16 +1782,7 @@ code {
         <canvas id="vel-canvas" height="60"></canvas>
       </div>
     </div>
-    <div class="section" style="margin-top:20px;">
-      <div class="section-label">💡 Как пользоваться</div>
-      <ul class="styled-list">
-        <li><strong>Нарисовать ноту:</strong> кликните на сетке Piano Roll</li>
-        <li><strong>Удалить ноту:</strong> кликните правой кнопкой мыши</li>
-        <li><strong>Velocity:</strong> кликните на столбик внизу и тяните вверх/вниз</li>
-        <li><strong>Квантайз:</strong> выберите сетку и нажмите «Применить Quantize»</li>
-        <li><strong>Воспроизведение:</strong> кнопка ▶ Играть</li>
-      </ul>
-    </div>
+
   </div>
 
   <!-- REAPER UI SIM -->
@@ -1764,6 +1886,148 @@ code {
     </div>
   </div>
 
+  <!-- AUDIO EDITOR PAGE -->
+  <div id="page-audio-editor" class="page">
+    <div class="page-header">
+      <div class="page-type type-lab">🎛️ АУДИОРЕДАКТОР</div>
+      <h2>Редактирование аудиофайла</h2>
+    </div>
+    <div class="section">
+      <div class="section-label">📂 Загрузить файл</div>
+      <p style="color:var(--text-dim);margin-bottom:14px;">Загрузите аудиофайл (WAV, MP3, OGG, FLAC) для редактирования прямо в браузере.</p>
+      <label id="ae-drop-zone" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:2px dashed var(--border);border-radius:12px;padding:32px;cursor:pointer;transition:all 0.2s;background:var(--surface2);" 
+        ondragover="event.preventDefault();this.style.borderColor='var(--accent)'"
+        ondragleave="this.style.borderColor='var(--border)'"
+        ondrop="aeHandleDrop(event)">
+        <span style="font-size:36px;">🎵</span>
+        <span style="color:var(--text-dim);font-size:13px;">Перетащите аудиофайл сюда или нажмите для выбора</span>
+        <span style="font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;">WAV · MP3 · OGG · FLAC</span>
+        <input type="file" id="ae-file-input" accept="audio/*" style="display:none" onchange="aeLoadFile(this.files[0])">
+      </label>
+    </div>
+
+    <div id="ae-editor" style="display:none;">
+      <div class="section">
+        <div class="section-label">🎚️ Информация</div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 20px;min-width:130px;">
+            <div style="font-size:10px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:4px;">ФАЙЛ</div>
+            <div id="ae-filename" style="font-size:13px;font-weight:600;color:var(--text);">—</div>
+          </div>
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 20px;min-width:100px;">
+            <div style="font-size:10px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:4px;">ДЛИНА</div>
+            <div id="ae-duration" style="font-size:13px;font-weight:600;color:var(--accent);">—</div>
+          </div>
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 20px;min-width:100px;">
+            <div style="font-size:10px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:4px;">КАНАЛЫ</div>
+            <div id="ae-channels" style="font-size:13px;font-weight:600;color:var(--accent2);">—</div>
+          </div>
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 20px;min-width:130px;">
+            <div style="font-size:10px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:4px;">СЭМПЛ РЕЙТ</div>
+            <div id="ae-samplerate" style="font-size:13px;font-weight:600;color:var(--accent4);">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">📊 Форма волны</div>
+        <!-- Waveform + playhead -->
+        <div style="position:relative;background:#0d0d14;border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;" id="ae-waveform-wrap" onclick="aeSeek(event)" onmousemove="aeShowSeekCursor(event)" onmouseleave="aeHideSeekCursor()">
+          <canvas id="ae-waveform" style="display:block;width:100%;height:120px;"></canvas>
+          <!-- Selection overlay -->
+          <div id="ae-selection" style="position:absolute;top:0;height:100%;background:rgba(79,195,247,0.12);border-left:2px solid var(--accent);border-right:2px solid var(--accent);pointer-events:none;display:none;"></div>
+          <!-- Playhead -->
+          <div id="ae-playhead" style="position:absolute;top:0;left:0%;width:2px;height:100%;background:var(--accent3);pointer-events:none;"></div>
+          <!-- Hover cursor -->
+          <div id="ae-seek-cursor" style="position:absolute;top:0;width:1px;height:100%;background:rgba(255,255,255,0.3);pointer-events:none;display:none;"></div>
+        </div>
+        <!-- Time ruler -->
+        <div id="ae-ruler" style="display:flex;justify-content:space-between;margin-top:4px;padding:0 2px;">
+        </div>
+        <!-- Playback bar -->
+        <div style="display:flex;align-items:center;gap:12px;margin-top:12px;">
+          <button id="ae-play-btn" onclick="aeTogglePlay()" style="width:40px;height:40px;border-radius:50%;background:var(--accent);border:none;color:#000;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;transition:opacity 0.15s;">▶</button>
+          <button onclick="aeStopAndReset()" style="width:36px;height:36px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;" title="Стоп и вернуться в начало">⏹</button>
+          <div style="flex:1;height:6px;background:var(--border);border-radius:3px;position:relative;cursor:pointer;" onclick="aeSeekBar(event)" id="ae-progress-bar">
+            <div id="ae-progress-fill" style="height:100%;width:0%;background:var(--accent);border-radius:3px;pointer-events:none;"></div>
+            <div id="ae-progress-head" style="position:absolute;top:50%;left:0%;transform:translate(-50%,-50%);width:14px;height:14px;background:var(--accent);border-radius:50%;border:2px solid var(--bg);pointer-events:none;"></div>
+          </div>
+          <span id="ae-current-time" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);min-width:50px;">0:00.0</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-dim);">/</span>
+          <span id="ae-total-time" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-dim);min-width:50px;">0:00.0</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">🎚️ Параметры обработки</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+          <!-- Громкость -->
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px;">
+            <div style="font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:10px;">ГРОМКОСТЬ</div>
+            <input type="range" id="ae-volume" min="0" max="2" step="0.01" value="1" style="width:100%;accent-color:var(--accent);" oninput="aeUpdateParam('volume',this.value)">
+            <div style="display:flex;justify-content:space-between;margin-top:4px;">
+              <span style="font-size:10px;color:var(--text-dim)">0%</span>
+              <span id="ae-volume-val" style="font-size:11px;color:var(--accent);font-family:'JetBrains Mono',monospace;">100%</span>
+              <span style="font-size:10px;color:var(--text-dim)">200%</span>
+            </div>
+          </div>
+          <!-- Скорость -->
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px;">
+            <div style="font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:10px;">СКОРОСТЬ</div>
+            <input type="range" id="ae-speed" min="0.25" max="3" step="0.05" value="1" style="width:100%;accent-color:var(--accent2);" oninput="aeUpdateParam('speed',this.value)">
+            <div style="display:flex;justify-content:space-between;margin-top:4px;">
+              <span style="font-size:10px;color:var(--text-dim)">0.25×</span>
+              <span id="ae-speed-val" style="font-size:11px;color:var(--accent2);font-family:'JetBrains Mono',monospace;">1.00×</span>
+              <span style="font-size:10px;color:var(--text-dim)">3.00×</span>
+            </div>
+          </div>
+          <!-- Шумоподавление -->
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px;">
+            <div style="font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:10px;">ШУМОПОДАВЛЕНИЕ</div>
+            <input type="range" id="ae-noise" min="0" max="1" step="0.05" value="0" style="width:100%;accent-color:#ce93d8;" oninput="aeUpdateParam('noise',this.value)">
+            <div style="display:flex;justify-content:space-between;margin-top:4px;">
+              <span style="font-size:10px;color:var(--text-dim)">0%</span>
+              <span id="ae-noise-val" style="font-size:11px;color:#ce93d8;font-family:'JetBrains Mono',monospace;">0%</span>
+              <span style="font-size:10px;color:var(--text-dim)">100%</span>
+            </div>
+          </div>
+          <!-- Low Pass Filter -->
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px;">
+            <div style="font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:10px;">ФИЛЬТР ВЫСОКИХ (Гц)</div>
+            <input type="range" id="ae-lowpass" min="200" max="20000" step="100" value="20000" style="width:100%;accent-color:#9b7fde;" oninput="aeUpdateParam('lowpass',this.value)">
+            <div style="display:flex;justify-content:space-between;margin-top:4px;">
+              <span style="font-size:10px;color:var(--text-dim)">200</span>
+              <span id="ae-lowpass-val" style="font-size:11px;color:#9b7fde;font-family:'JetBrains Mono',monospace;">20000 Гц</span>
+              <span style="font-size:10px;color:var(--text-dim)">20k</span>
+            </div>
+          </div>
+          <!-- Реверс -->
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div style="font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:10px;">РЕВЕРС</div>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <input type="checkbox" id="ae-reverse" style="accent-color:var(--accent3);width:16px;height:16px;" onchange="aeUpdateParam('reverse',this.checked)">
+              <span style="font-size:13px;color:var(--text);">Воспроизвести задом наперёд</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section">
+        <div class="section-label">✂️ Обрезка выделенного участка</div>
+        <p style="color:var(--text-dim);font-size:13px;margin-bottom:12px;">Кликните и потяните по форме волны для выделения участка, затем воспроизведите, оставьте только его или скачайте.</p>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-dim);">Выделение: <span id="ae-sel-info" style="color:var(--accent);">не выделено</span></div>
+          <button onclick="aePlaySelection()" class="pr-btn">▶ Воспроизвести выделение</button>
+          <button onclick="aeTrimToSelection()" class="pr-btn" style="border-color:var(--accent2);color:var(--accent2);">✂️ Оставить только выделение</button>
+          <button onclick="aeTrimExport()" class="pr-btn" style="border-color:var(--accent4);color:var(--accent4);">💾 Скачать выделение</button>
+          <button onclick="aeClearSelection()" class="pr-btn">✕ Снять выделение</button>
+        </div>
+        <div id="ae-trim-info" style="display:none;margin-top:10px;font-size:12px;color:var(--accent2);font-family:'JetBrains Mono',monospace;"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- TEST PAGE -->
   <div id="page-test" class="page">
     <div class="page-header">
@@ -1819,6 +2083,9 @@ function showPage(id) {
 
   if (id === 'piano') initPianoRoll();
   if (id === 'reaper-ui') initReaperUI();
+  if (id === 'lec5') { setTimeout(initPianoRollLec5, 100); }
+  if (id === 'lec2') { setTimeout(initReaperUILec2, 100); }
+  if (id === 'audio-editor') { /* drop zone label wraps input, click handled natively */ }
   if (id === 'test') {}
 
   // Close sidebar on mobile
@@ -2019,8 +2286,11 @@ function getQuantize() {
 }
 
 function prCanvasClick(e) {
-  const rect = e.target.getBoundingClientRect();
-  const x = e.clientX - rect.left, y = e.clientY - rect.top;
+  const canvas = e.target;
+  const container = document.getElementById('pr-grid-container');
+  const rect = container.getBoundingClientRect();
+  const x = (e.clientX - rect.left) + container.scrollLeft;
+  const y = (e.clientY - rect.top) + container.scrollTop;
   const q = getQuantize();
   const col = Math.floor(x / PR_COL_W / q) * q;
   const row = Math.floor(y / PR_ROW_H);
@@ -2039,8 +2309,10 @@ function prCanvasClick(e) {
 
 function prCanvasRightClick(e) {
   e.preventDefault();
-  const rect = e.target.getBoundingClientRect();
-  const x = e.clientX - rect.left, y = e.clientY - rect.top;
+  const container = document.getElementById('pr-grid-container');
+  const rect = container.getBoundingClientRect();
+  const x = (e.clientX - rect.left) + container.scrollLeft;
+  const y = (e.clientY - rect.top) + container.scrollTop;
   const col = x / PR_COL_W, row = Math.floor(y / PR_ROW_H);
   const pitch = PR_NOTES_FROM + (PR_ROWS - 1 - row);
   prNotes = prNotes.filter(n => !(n.pitch === pitch && col >= n.start && col < n.start + n.duration));
@@ -2063,18 +2335,19 @@ function prQuantizeAll() {
 
 let velDragging = null;
 function velMouseDown(e) {
-  const rect = e.target.getBoundingClientRect();
-  const x = e.clientX - rect.left;
+  const canvas = e.target;
+  const rect = canvas.getBoundingClientRect();
+  const sx = canvas.width / rect.width;
+  const x = (e.clientX - rect.left) * sx;
   const col = x / PR_COL_W;
   velDragging = prNotes.findIndex(n => col >= n.start && col < n.start + n.duration);
   if (velDragging < 0) return;
   
   function onMove(e2) {
     if (velDragging < 0) return;
-    const canvas = document.getElementById('vel-canvas');
     const r = canvas.getBoundingClientRect();
     const relY = e2.clientY - r.top;
-    const vel = Math.max(1, Math.min(127, Math.round((1 - relY / canvas.height) * 127)));
+    const vel = Math.max(1, Math.min(127, Math.round((1 - relY / r.height) * 127)));
     prNotes[velDragging].velocity = vel;
     drawPR();
     drawVelocity();
@@ -2387,6 +2660,616 @@ function resetTest() {
   document.getElementById('test-result-screen').style.display = 'none';
   document.getElementById('test-start-screen').style.display = 'block';
 }
+
+// ===== LEC2 REAPER UI (tooltip init for embedded sim) =====
+function initReaperUILec2() {
+  const tooltip = document.getElementById('r-tooltip');
+  document.querySelectorAll('#page-lec2 [data-tip]').forEach(el => {
+    el.addEventListener('mouseenter', function(e) {
+      el.classList.add('r-highlight');
+      tooltip.innerHTML = `<strong>${el.dataset.tipTitle || ''}</strong>${el.dataset.tip}`;
+      tooltip.style.display = 'block';
+      positionTooltip(e);
+    });
+    el.addEventListener('mousemove', positionTooltip);
+    el.addEventListener('mouseleave', function() {
+      el.classList.remove('r-highlight');
+      tooltip.style.display = 'none';
+    });
+  });
+}
+
+let rPlayingLec2 = false, rIntervalLec2;
+function rTogglePlayLec2() {
+  rPlayingLec2 = !rPlayingLec2;
+  const btn = document.getElementById('r-play-btn-lec2');
+  if (rPlayingLec2) {
+    btn.textContent = '⏸'; btn.style.background = '#00aa00'; btn.style.borderColor = '#00aa00';
+    let t = 0;
+    rIntervalLec2 = setInterval(() => {
+      t += 0.05;
+      const m = Math.floor(t/60), s = Math.floor(t%60), ms = Math.floor((t%1)*1000);
+      document.getElementById('r-time-display-lec2').textContent = `${m}:${String(s).padStart(2,'0')}.${String(ms).padStart(3,'0')}`;
+    }, 50);
+  } else {
+    btn.textContent = '▶'; btn.style.background = ''; btn.style.borderColor = '';
+    clearInterval(rIntervalLec2);
+  }
+}
+
+// ===== LEC5 PIANO ROLL =====
+let prNotesL5 = [], prPlayingL5 = false, prAudioCtxL5 = null, prPlayScheduledL5 = [];
+let prPlayPosL5 = 0, prPlayStartTimeL5 = 0, prPlayRafL5 = null;
+const PR_L5_ROWS = 36, PR_L5_ROW_H = 20, PR_L5_COLS = 32, PR_L5_COL_W = 40, PR_L5_FROM = 48;
+
+function initPianoRollLec5() {
+  const canvas = document.getElementById('pr-canvas-lec5');
+  const cont = document.getElementById('pr-grid-container-lec5');
+  if (!canvas || canvas.dataset.init) return;
+  canvas.dataset.init = '1';
+  canvas.width = PR_L5_COLS * PR_L5_COL_W;
+  canvas.height = PR_L5_ROWS * PR_L5_ROW_H;
+  canvas.style.width = canvas.width + 'px';
+  canvas.style.height = canvas.height + 'px';
+
+  const vc = document.getElementById('vel-canvas-lec5');
+  vc.width = PR_L5_COLS * PR_L5_COL_W; vc.style.width = vc.width + 'px';
+
+  const keys = document.getElementById('pr-keys-lec5');
+  const noteNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+  for (let i = PR_L5_ROWS - 1; i >= 0; i--) {
+    const midi = PR_L5_FROM + i;
+    const name = noteNames[midi % 12];
+    const isBlack = name.includes('#');
+    const div = document.createElement('div');
+    div.className = 'pr-key ' + (isBlack ? 'black-key' : 'white-key');
+    div.textContent = name + Math.floor(midi / 12 - 1);
+    div.onclick = () => prPlayNoteL5(midi);
+    keys.appendChild(div);
+  }
+
+  prDrawL5();
+  canvas.addEventListener('mousedown', prMouseDownL5);
+  canvas.addEventListener('contextmenu', e => { e.preventDefault(); prRClickL5(e); });
+  vc.addEventListener('mousedown', prVelMouseL5);
+}
+
+function prRowPitchL5(row) { return PR_L5_FROM + (PR_L5_ROWS - 1 - row); }
+function prPitchRowL5(pitch) { return PR_L5_ROWS - 1 - (pitch - PR_L5_FROM); }
+
+function prMouseDownL5(e) {
+  if (e.button !== 0) return;
+  const cont = document.getElementById('pr-grid-container-lec5');
+  const rect = cont.getBoundingClientRect();
+  const x = (e.clientX - rect.left) + cont.scrollLeft, y = (e.clientY - rect.top) + cont.scrollTop;
+  const col = Math.floor(x / PR_L5_COL_W), row = Math.floor(y / PR_L5_ROW_H);
+  const q = parseFloat(document.getElementById('pr-quantize-lec5').value);
+  const start = Math.round(col / (PR_L5_COL_W * q)) * q;
+  const pitch = prRowPitchL5(row);
+  const existing = prNotesL5.findIndex(n => n.pitch === pitch && Math.abs(n.start - start) < 0.01);
+  if (existing >= 0) { prNotesL5.splice(existing, 1); }
+  else { prNotesL5.push({ pitch, start, duration: q, velocity: 100 }); prPlayNoteL5(pitch); }
+  prDrawL5();
+}
+
+function prRClickL5(e) {
+  const cont = document.getElementById('pr-grid-container-lec5');
+  const rect = cont.getBoundingClientRect();
+  const x = (e.clientX - rect.left) + cont.scrollLeft, y = (e.clientY - rect.top) + cont.scrollTop;
+  const col = Math.floor(x / PR_L5_COL_W), row = Math.floor(y / PR_L5_ROW_H);
+  const pitch = prRowPitchL5(row);
+  const q = parseFloat(document.getElementById('pr-quantize-lec5').value);
+  const start = Math.round(col / (PR_L5_COL_W * q)) * q;
+  const idx = prNotesL5.findIndex(n => n.pitch === pitch && Math.abs(n.start - start) < 0.01);
+  if (idx >= 0) { prNotesL5.splice(idx, 1); prDrawL5(); }
+}
+
+function prVelMouseL5(e) {
+  const vc = document.getElementById('vel-canvas-lec5');
+  const rect = vc.getBoundingClientRect();
+  const sx = vc.width / rect.width;
+  const x = (e.clientX - rect.left) * sx;
+  const col = Math.floor(x / PR_L5_COL_W);
+  function onMove(ev) {
+    const y = ev.clientY - rect.top;
+    const vel = Math.max(1, Math.min(127, Math.round((1 - y / rect.height) * 127)));
+    prNotesL5.filter(n => Math.floor(n.start * PR_L5_COL_W / 1) === col || Math.floor(n.start) === col).forEach(n => n.velocity = vel);
+    prNotesL5.forEach(n => { if (Math.floor(n.start * (1/1)) === Math.floor(x/PR_L5_COL_W)) n.velocity = vel; });
+    prDrawL5();
+  }
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', () => document.removeEventListener('mousemove', onMove), {once:true});
+}
+
+function prDrawL5() {
+  const canvas = document.getElementById('pr-canvas-lec5');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const noteNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+
+  ctx.fillStyle = '#0d0d18'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  for (let r = 0; r < PR_L5_ROWS; r++) {
+    const midi = prRowPitchL5(r);
+    const name = noteNames[midi % 12];
+    if (name.includes('#')) { ctx.fillStyle = 'rgba(0,0,0,0.25)'; ctx.fillRect(0, r*PR_L5_ROW_H, canvas.width, PR_L5_ROW_H); }
+    if (name === 'C') { ctx.fillStyle = 'rgba(255,255,255,0.06)'; ctx.fillRect(0, r*PR_L5_ROW_H, canvas.width, PR_L5_ROW_H); }
+  }
+
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)'; ctx.lineWidth = 1;
+  for (let c = 0; c <= PR_L5_COLS; c++) { ctx.beginPath(); ctx.moveTo(c*PR_L5_COL_W,0); ctx.lineTo(c*PR_L5_COL_W,canvas.height); ctx.stroke(); }
+  for (let r = 0; r <= PR_L5_ROWS; r++) { ctx.beginPath(); ctx.moveTo(0,r*PR_L5_ROW_H); ctx.lineTo(canvas.width,r*PR_L5_ROW_H); ctx.stroke(); }
+
+  prNotesL5.forEach(n => {
+    const row = prPitchRowL5(n.pitch);
+    const x = n.start * PR_L5_COL_W, y = row * PR_L5_ROW_H;
+    const w = n.duration * PR_L5_COL_W - 2, h = PR_L5_ROW_H - 2;
+    const alpha = 0.5 + (n.velocity / 127) * 0.5;
+    ctx.fillStyle = `rgba(79,195,247,${alpha})`;
+    ctx.beginPath(); ctx.roundRect(x+1, y+1, w, h, 3); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.font = '8px JetBrains Mono'; ctx.fillText(['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'][n.pitch%12], x+3, y+PR_L5_ROW_H-4);
+  });
+
+  // Playhead
+  if (prPlayingL5 || prPlayPosL5 > 0) {
+    const px = prPlayPosL5 * PR_L5_COL_W;
+    ctx.strokeStyle = 'rgba(255,112,67,0.9)'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, canvas.height); ctx.stroke();
+  }
+
+  // Velocity
+  const vc = document.getElementById('vel-canvas-lec5');
+  if (!vc) return;
+  const vctx = vc.getContext('2d');
+  vctx.fillStyle = '#0d0d18'; vctx.fillRect(0, 0, vc.width, vc.height);
+  prNotesL5.forEach(n => {
+    const x = n.start * PR_L5_COL_W;
+    const h = (n.velocity / 127) * vc.height;
+    vctx.fillStyle = 'rgba(79,195,247,0.7)';
+    vctx.fillRect(x+1, vc.height - h, PR_L5_COL_W - 3, h);
+  });
+}
+
+function prPlayNoteL5(midi) {
+  if (!prAudioCtxL5) prAudioCtxL5 = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = prAudioCtxL5.createOscillator();
+  const gain = prAudioCtxL5.createGain();
+  const type = document.getElementById('pr-instrument-lec5').value;
+  osc.type = type; osc.frequency.value = 440 * Math.pow(2, (midi - 69) / 12);
+  gain.gain.setValueAtTime(0.3, prAudioCtxL5.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, prAudioCtxL5.currentTime + 0.5);
+  osc.connect(gain); gain.connect(prAudioCtxL5.destination);
+  osc.start(); osc.stop(prAudioCtxL5.currentTime + 0.5);
+}
+
+function prTogglePlayLec5() {
+  if (!prAudioCtxL5) prAudioCtxL5 = new (window.AudioContext || window.webkitAudioContext)();
+  prPlayingL5 = !prPlayingL5;
+  const btn = document.getElementById('pr-play-btn-lec5');
+  if (prPlayingL5) {
+    btn.textContent = '⏸ Стоп'; btn.classList.add('play-active');
+    prPlayScheduledL5.forEach(n => { try { n.osc.stop(); } catch(e){} });
+    prPlayScheduledL5 = [];
+    const startBeat = prPlayPosL5;
+    prPlayStartTimeL5 = prAudioCtxL5.currentTime - startBeat * 0.5;
+    const tempo = 0.5; // seconds per beat
+    prNotesL5.forEach(n => {
+      const t = prPlayStartTimeL5 + n.start * tempo;
+      if (t < prAudioCtxL5.currentTime) return;
+      const osc = prAudioCtxL5.createOscillator();
+      const gain = prAudioCtxL5.createGain();
+      osc.type = document.getElementById('pr-instrument-lec5').value;
+      osc.frequency.value = 440 * Math.pow(2, (n.pitch - 69) / 12);
+      const vel = n.velocity / 127 * 0.4;
+      gain.gain.setValueAtTime(vel, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + n.duration * tempo);
+      osc.connect(gain); gain.connect(prAudioCtxL5.destination);
+      osc.start(t); osc.stop(t + n.duration * tempo + 0.01);
+      prPlayScheduledL5.push({osc, gain});
+    });
+    const totalBeats = PR_L5_COLS;
+    function tick() {
+      if (!prPlayingL5) return;
+      const elapsed = prAudioCtxL5.currentTime - prPlayStartTimeL5;
+      prPlayPosL5 = elapsed / tempo;
+      const pct = prPlayPosL5 / totalBeats;
+      document.getElementById('pr-seek-fill-lec5').style.width = Math.min(pct*100,100) + '%';
+      document.getElementById('pr-seek-head-lec5').style.left = Math.min(pct*100,100) + '%';
+      document.getElementById('pr-time-lec5').textContent = elapsed.toFixed(2) + 's';
+      prDrawL5();
+      if (prPlayPosL5 >= totalBeats) { prStopPlayLec5(); return; }
+      prPlayRafL5 = requestAnimationFrame(tick);
+    }
+    prPlayRafL5 = requestAnimationFrame(tick);
+  } else {
+    prStopPlayLec5();
+  }
+}
+
+function prStopPlayLec5() {
+  prPlayingL5 = false;
+  if (prPlayRafL5) cancelAnimationFrame(prPlayRafL5);
+  prPlayScheduledL5.forEach(n => { try { n.osc.stop(); } catch(e){} });
+  prPlayScheduledL5 = [];
+  const btn = document.getElementById('pr-play-btn-lec5');
+  if (btn) { btn.textContent = '▶ Играть'; btn.classList.remove('play-active'); }
+  prPlayPosL5 = 0;
+  document.getElementById('pr-seek-fill-lec5').style.width = '0%';
+  document.getElementById('pr-seek-head-lec5').style.left = '0%';
+  document.getElementById('pr-time-lec5').textContent = '0.00s';
+  prDrawL5();
+}
+
+function prClearLec5() { prNotesL5 = []; prPlayPosL5 = 0; prDrawL5(); }
+
+function prQuantizeAllLec5() {
+  const q = parseFloat(document.getElementById('pr-quantize-lec5').value);
+  prNotesL5.forEach(n => { n.start = Math.round(n.start / q) * q; n.duration = q; });
+  prDrawL5();
+}
+
+// ===== AUDIO EDITOR =====
+let aeAudioCtx = null, aeBuffer = null, aeSource = null, aeGainNode = null, aeLPFilter = null, aeNoiseFilter = null;
+let aePlaying = false, aeStartOffset = 0, aeStartedAt = 0;
+let aeSelStart = null, aeSelEnd = null, aeDraggingWave = false, aeDragStartX = 0;
+let aeParams = { volume: 1, speed: 1, lowpass: 20000, noise: 0, reverse: false };
+let aeRafId = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const wrap = document.getElementById('ae-waveform-wrap');
+  if (wrap) {
+    wrap.addEventListener('mousedown', aeWaveMouseDown);
+  }
+});
+
+function aeHandleDrop(e) {
+  e.preventDefault();
+  document.getElementById('ae-drop-zone').style.borderColor = 'var(--border)';
+  const f = e.dataTransfer.files[0];
+  if (f && f.type.startsWith('audio/')) aeLoadFile(f);
+}
+
+function aeLoadFile(file) {
+  if (!file) return;
+  if (!aeAudioCtx) aeAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const reader = new FileReader();
+  reader.onload = e => {
+    aeAudioCtx.decodeAudioData(e.target.result, buf => {
+      aeBuffer = buf;
+      aeStop();
+      aeStartOffset = 0;
+      aeSelStart = null; aeSelEnd = null;
+      document.getElementById('ae-filename').textContent = file.name;
+      const dur = buf.duration;
+      const m = Math.floor(dur/60), s = (dur%60).toFixed(1);
+      document.getElementById('ae-duration').textContent = `${m}:${String(Math.floor(dur%60)).padStart(2,'0')}.${((dur%1)*10|0)}`;
+      document.getElementById('ae-channels').textContent = buf.numberOfChannels === 1 ? 'Моно' : 'Стерео';
+      document.getElementById('ae-samplerate').textContent = buf.sampleRate + ' Гц';
+      document.getElementById('ae-total-time').textContent = aeFormatTime(dur);
+      document.getElementById('ae-editor').style.display = 'block';
+      aeDrawWaveform();
+      aeDrawRuler();
+    }, () => alert('Не удалось декодировать файл'));
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function aeDrawWaveform() {
+  if (!aeBuffer) return;
+  const canvas = document.getElementById('ae-waveform');
+  const wrap = document.getElementById('ae-waveform-wrap');
+  canvas.width = wrap.clientWidth || 800;
+  canvas.height = 120;
+  const ctx = canvas.getContext('2d');
+  const data = aeBuffer.getChannelData(0);
+  const step = Math.ceil(data.length / canvas.width);
+  const mid = canvas.height / 2;
+  ctx.fillStyle = '#0d0d14';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = 'rgba(79,195,247,0.7)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let i = 0; i < canvas.width; i++) {
+    let min = 0, max = 0;
+    for (let j = 0; j < step; j++) {
+      const v = data[i*step+j] || 0;
+      if (v < min) min = v; if (v > max) max = v;
+    }
+    ctx.moveTo(i, mid + min * mid);
+    ctx.lineTo(i, mid + max * mid);
+  }
+  ctx.stroke();
+}
+
+function aeDrawRuler() {
+  if (!aeBuffer) return;
+  const ruler = document.getElementById('ae-ruler');
+  ruler.innerHTML = '';
+  const dur = aeBuffer.duration;
+  const steps = Math.min(10, Math.floor(dur));
+  for (let i = 0; i <= steps; i++) {
+    const t = (i / steps) * dur;
+    const span = document.createElement('span');
+    span.style.cssText = 'font-size:9px;color:var(--text-dim);font-family:JetBrains Mono,monospace;';
+    span.textContent = aeFormatTime(t);
+    ruler.appendChild(span);
+  }
+}
+
+function aeFormatTime(t) {
+  const m = Math.floor(t/60), s = (t%60).toFixed(1);
+  return `${m}:${String(Math.floor(t%60)).padStart(2,'0')}.${((t%1)*10|0)}`;
+}
+
+function aeUpdateParam(param, val) {
+  if (param === 'volume') { aeParams.volume = parseFloat(val); document.getElementById('ae-volume-val').textContent = Math.round(val*100)+'%'; if (aeGainNode) aeGainNode.gain.value = aeParams.volume; }
+  else if (param === 'speed') { aeParams.speed = parseFloat(val); document.getElementById('ae-speed-val').textContent = parseFloat(val).toFixed(2)+'×'; if (aePlaying) { aeStop(); aePlay(); } }
+  else if (param === 'noise') { aeParams.noise = parseFloat(val); document.getElementById('ae-noise-val').textContent = Math.round(val*100)+'%'; if (aeNoiseFilter) { aeNoiseFilter.frequency.value = aeNoiseFreq(); aeNoiseFilter.Q.value = aeNoiseQ(); } }
+  else if (param === 'lowpass') { aeParams.lowpass = parseFloat(val); document.getElementById('ae-lowpass-val').textContent = val+' Гц'; if (aeLPFilter) aeLPFilter.frequency.value = aeParams.lowpass; }
+  else if (param === 'reverse') { aeParams.reverse = val; }
+}
+
+function aeNoiseFreq() { return 200 + aeParams.noise * 800; }
+function aeNoiseQ() { return 0.5 + aeParams.noise * 15; }
+
+function aePlay(startTime, endTime) {
+  if (!aeBuffer || !aeAudioCtx) return;
+  aeStop();
+  if (aeAudioCtx.state === 'suspended') aeAudioCtx.resume();
+
+  let buf = aeBuffer;
+  if (aeParams.reverse) {
+    const rev = aeAudioCtx.createBuffer(buf.numberOfChannels, buf.length, buf.sampleRate);
+    for (let ch = 0; ch < buf.numberOfChannels; ch++) {
+      const src = buf.getChannelData(ch), dst = rev.getChannelData(ch);
+      for (let i = 0; i < src.length; i++) dst[i] = src[src.length-1-i];
+    }
+    buf = rev;
+  }
+
+  aeSource = aeAudioCtx.createBufferSource();
+  aeSource.buffer = buf;
+  aeSource.playbackRate.value = aeParams.speed;
+
+  aeGainNode = aeAudioCtx.createGain();
+  aeGainNode.gain.value = aeParams.volume;
+
+  aeLPFilter = aeAudioCtx.createBiquadFilter();
+  aeLPFilter.type = 'lowpass';
+  aeLPFilter.frequency.value = aeParams.lowpass;
+
+  aeNoiseFilter = aeAudioCtx.createBiquadFilter();
+  aeNoiseFilter.type = 'highpass';
+  aeNoiseFilter.frequency.value = aeNoiseFreq();
+  aeNoiseFilter.Q.value = aeNoiseQ();
+
+  aeSource.connect(aeNoiseFilter);
+  aeNoiseFilter.connect(aeLPFilter);
+  aeLPFilter.connect(aeGainNode);
+  aeGainNode.connect(aeAudioCtx.destination);
+
+  const offset = startTime !== undefined ? startTime : aeStartOffset;
+  const end = endTime !== undefined ? endTime : buf.duration / aeParams.speed;
+  const dur = end - offset;
+
+  aeSource.start(0, offset * aeParams.speed, dur * aeParams.speed);
+  aeStartedAt = aeAudioCtx.currentTime;
+  aeStartOffset = offset;
+  aePlaying = true;
+  document.getElementById('ae-play-btn').textContent = '⏸';
+
+  aeSource.onended = () => {
+    if (aePlaying) { aePlaying = false; aeStartOffset = 0;
+      document.getElementById('ae-play-btn').textContent = '▶';
+      document.getElementById('ae-progress-fill').style.width = '0%';
+      document.getElementById('ae-progress-head').style.left = '0%';
+      document.getElementById('ae-playhead').style.left = '0%';
+      document.getElementById('ae-current-time').textContent = aeFormatTime(0);
+    }
+  };
+
+  aeAnimLoop();
+}
+
+function aeAnimLoop() {
+  if (!aePlaying) return;
+  const elapsed = (aeAudioCtx.currentTime - aeStartedAt) * aeParams.speed;
+  const cur = aeStartOffset + elapsed;
+  const dur = aeBuffer.duration;
+  const pct = Math.min(cur / dur, 1);
+  document.getElementById('ae-progress-fill').style.width = (pct*100)+'%';
+  document.getElementById('ae-progress-head').style.left = (pct*100)+'%';
+  document.getElementById('ae-playhead').style.left = (pct*100)+'%';
+  document.getElementById('ae-current-time').textContent = aeFormatTime(cur);
+  aeRafId = requestAnimationFrame(aeAnimLoop);
+}
+
+function aeTogglePlay() {
+  if (aePlaying) aeStop();
+  else aePlay();
+}
+
+function aeStop() {
+  if (aeSource) { try { aeSource.stop(); } catch(e){} aeSource = null; }
+  if (aeRafId) cancelAnimationFrame(aeRafId);
+  // Сохраняем текущую позицию перед остановкой
+  if (aePlaying && aeAudioCtx && aeBuffer) {
+    const elapsed = (aeAudioCtx.currentTime - aeStartedAt) * aeParams.speed;
+    const cur = Math.min(aeStartOffset + elapsed, aeBuffer.duration);
+    aeStartOffset = cur;
+    const pct = cur / aeBuffer.duration;
+    document.getElementById('ae-progress-fill').style.width = (pct*100)+'%';
+    document.getElementById('ae-progress-head').style.left = (pct*100)+'%';
+    document.getElementById('ae-playhead').style.left = (pct*100)+'%';
+    document.getElementById('ae-current-time').textContent = aeFormatTime(cur);
+  }
+  aePlaying = false;
+  document.getElementById('ae-play-btn').textContent = '▶';
+}
+
+function aeStopAndReset() {
+  if (aeSource) { try { aeSource.stop(); } catch(e){} aeSource = null; }
+  if (aeRafId) cancelAnimationFrame(aeRafId);
+  aePlaying = false;
+  aeStartOffset = 0;
+  document.getElementById('ae-play-btn').textContent = '▶';
+  document.getElementById('ae-progress-fill').style.width = '0%';
+  document.getElementById('ae-progress-head').style.left = '0%';
+  document.getElementById('ae-playhead').style.left = '0%';
+  document.getElementById('ae-current-time').textContent = aeFormatTime(0);
+}
+
+function aeSeek(e) {
+  if (aeDraggingWave) return;
+  if (!aeBuffer) return;
+  const wrap = document.getElementById('ae-waveform-wrap');
+  const pct = (e.clientX - wrap.getBoundingClientRect().left) / wrap.clientWidth;
+  const t = pct * aeBuffer.duration;
+  aeStartOffset = t;
+  const pct2 = t / aeBuffer.duration;
+  document.getElementById('ae-progress-fill').style.width = (pct2*100)+'%';
+  document.getElementById('ae-progress-head').style.left = (pct2*100)+'%';
+  document.getElementById('ae-playhead').style.left = (pct2*100)+'%';
+  document.getElementById('ae-current-time').textContent = aeFormatTime(t);
+  if (aePlaying) { aePlay(); }
+}
+
+function aeSeekBar(e) {
+  if (!aeBuffer) return;
+  const bar = document.getElementById('ae-progress-bar');
+  const pct = (e.clientX - bar.getBoundingClientRect().left) / bar.clientWidth;
+  const t = pct * aeBuffer.duration;
+  aeStartOffset = t;
+  const pct2 = t / aeBuffer.duration;
+  document.getElementById('ae-progress-fill').style.width = (pct2*100)+'%';
+  document.getElementById('ae-progress-head').style.left = (pct2*100)+'%';
+  document.getElementById('ae-playhead').style.left = (pct2*100)+'%';
+  document.getElementById('ae-current-time').textContent = aeFormatTime(t);
+  if (aePlaying) { aePlay(); }
+}
+
+function aeShowSeekCursor(e) {
+  const cursor = document.getElementById('ae-seek-cursor');
+  const wrap = document.getElementById('ae-waveform-wrap');
+  const pct = (e.clientX - wrap.getBoundingClientRect().left) / wrap.clientWidth;
+  cursor.style.left = (pct*100)+'%'; cursor.style.display = 'block';
+}
+function aeHideSeekCursor() { document.getElementById('ae-seek-cursor').style.display = 'none'; }
+
+function aeWaveMouseDown(e) {
+  if (!aeBuffer) return;
+  if (e.button !== 0) return;
+  const wrap = document.getElementById('ae-waveform-wrap');
+  const rect = wrap.getBoundingClientRect();
+  aeDragStartX = (e.clientX - rect.left) / rect.width;
+  aeSelStart = aeDragStartX; aeSelEnd = aeDragStartX;
+  aeDraggingWave = true;
+
+  function onMove(ev) {
+    const pct = Math.max(0, Math.min(1, (ev.clientX - rect.left) / rect.width));
+    aeSelEnd = pct;
+    const left = Math.min(aeSelStart, aeSelEnd), right = Math.max(aeSelStart, aeSelEnd);
+    const sel = document.getElementById('ae-selection');
+    sel.style.display = 'block';
+    sel.style.left = (left*100)+'%'; sel.style.width = ((right-left)*100)+'%';
+    const s = left * aeBuffer.duration, en = right * aeBuffer.duration;
+    document.getElementById('ae-sel-info').textContent = `${aeFormatTime(s)} — ${aeFormatTime(en)}`;
+  }
+  function onUp() {
+    aeDraggingWave = false;
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+    if (Math.abs(aeSelEnd - aeSelStart) < 0.005) { aeClearSelection(); }
+  }
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
+}
+
+function aePlaySelection() {
+  if (!aeBuffer || aeSelStart === null || aeSelEnd === null) return;
+  const s = Math.min(aeSelStart, aeSelEnd) * aeBuffer.duration;
+  const en = Math.max(aeSelStart, aeSelEnd) * aeBuffer.duration;
+  aePlay(s, en);
+}
+
+function aeClearSelection() {
+  aeSelStart = null; aeSelEnd = null;
+  document.getElementById('ae-selection').style.display = 'none';
+  document.getElementById('ae-sel-info').textContent = 'не выделено';
+}
+
+function aeGetSelectionBuffer() {
+  if (!aeBuffer || aeSelStart === null || aeSelEnd === null) return null;
+  const start = Math.min(aeSelStart, aeSelEnd);
+  const end = Math.max(aeSelStart, aeSelEnd);
+  if (end - start < 0.005) return null;
+  const startSample = Math.floor(start * aeBuffer.sampleRate * aeBuffer.duration);
+  const endSample = Math.floor(end * aeBuffer.sampleRate * aeBuffer.duration);
+  const length = endSample - startSample;
+  if (length <= 0) return null;
+  const newBuf = aeAudioCtx.createBuffer(aeBuffer.numberOfChannels, length, aeBuffer.sampleRate);
+  for (let ch = 0; ch < aeBuffer.numberOfChannels; ch++) {
+    const src = aeBuffer.getChannelData(ch);
+    const dst = newBuf.getChannelData(ch);
+    for (let i = 0; i < length; i++) dst[i] = src[startSample + i];
+  }
+  return newBuf;
+}
+
+function aeTrimToSelection() {
+  const newBuf = aeGetSelectionBuffer();
+  if (!newBuf) { alert('Сначала выделите участок на форме волны'); return; }
+  aeStop();
+  aeBuffer = newBuf;
+  aeSelStart = null; aeSelEnd = null;
+  aeStartOffset = 0;
+  const dur = aeBuffer.duration;
+  document.getElementById('ae-duration').textContent = aeFormatTime(dur);
+  document.getElementById('ae-total-time').textContent = aeFormatTime(dur);
+  document.getElementById('ae-selection').style.display = 'none';
+  document.getElementById('ae-sel-info').textContent = 'не выделено';
+  aeDrawWaveform();
+  aeDrawRuler();
+  const info = document.getElementById('ae-trim-info');
+  info.textContent = '✅ Буфер обрезан до выделения. Нажмите «Скачать» для сохранения.';
+  info.style.display = 'block';
+}
+
+function aeTrimExport() {
+  const newBuf = aeGetSelectionBuffer() || aeBuffer;
+  if (!newBuf) { alert('Нет аудио для экспорта'); return; }
+  // Encode to WAV and download
+  const numCh = newBuf.numberOfChannels;
+  const sr = newBuf.sampleRate;
+  const len = newBuf.length;
+  const byteRate = sr * numCh * 2;
+  const blockAlign = numCh * 2;
+  const dataSize = len * numCh * 2;
+  const buf = new ArrayBuffer(44 + dataSize);
+  const view = new DataView(buf);
+  const writeStr = (o, s) => { for (let i=0;i<s.length;i++) view.setUint8(o+i, s.charCodeAt(i)); };
+  writeStr(0,'RIFF'); view.setUint32(4, 36+dataSize, true); writeStr(8,'WAVE');
+  writeStr(12,'fmt '); view.setUint32(16, 16, true); view.setUint16(20, 1, true);
+  view.setUint16(22, numCh, true); view.setUint32(24, sr, true);
+  view.setUint32(28, byteRate, true); view.setUint16(32, blockAlign, true);
+  view.setUint16(34, 16, true); writeStr(36,'data'); view.setUint32(40, dataSize, true);
+  let offset = 44;
+  for (let i=0; i<len; i++) {
+    for (let ch=0; ch<numCh; ch++) {
+      const s = Math.max(-1, Math.min(1, newBuf.getChannelData(ch)[i]));
+      view.setInt16(offset, s < 0 ? s*0x8000 : s*0x7FFF, true);
+      offset += 2;
+    }
+  }
+  const blob = new Blob([buf], {type:'audio/wav'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  const origName = (document.getElementById('ae-filename').textContent || 'audio').replace(/\.[^.]+$/, '');
+  a.download = origName + '_trimmed.wav';
+  a.click();
+}
+
 </script>
 </body>
 </html>
