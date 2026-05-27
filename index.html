@@ -1069,7 +1069,7 @@ code {
       <div class="nav-item" onclick="showPage('lab5')"><span class="nav-icon">🔬</span> Запись и MIDI <span class="nav-num">Л5</span></div>
       <div class="nav-item" onclick="showPage('lab6')"><span class="nav-icon">🔬</span> Сведение трека <span class="nav-num">Л6</span></div>
       <div class="nav-item" onclick="showPage('lab7')"><span class="nav-icon">🔬</span> Рендеринг и экспорт <span class="nav-num">Л7</span></div>
-      <div class="nav-item" onclick="showPage('lab8')"><span class="nav-icon">🏆</span> Финальный проект <span class="nav-num">Л8</span></div>
+      <div class="nav-item" onclick="showPage('lab8')"><span class="nav-icon">🏆</span> Собственный проект <span class="nav-num">Л8</span></div>
     </div>
 
     <div class="nav-section">
@@ -1120,7 +1120,7 @@ code {
       <div class="course-card" onclick="showPage('piano')"><div class="course-card-icon">🎹</div><div><h3>Piano Roll</h3><p>Интерактивный редактор нот прямо в браузере</p></div></div>
       <div class="course-card" onclick="showPage('reaper-ui')"><div class="course-card-icon">🖥️</div><div><h3>Интерфейс REAPER</h3><p>Изучи интерфейс REAPER с подсказками</p></div></div>
       <div class="course-card" onclick="showPage('test')"><div class="course-card-icon">📝</div><div><h3>Тест (30 вопросов)</h3><p>Проверь свои знания по всему курсу</p></div></div>
-      <div class="course-card" onclick="showPage('lab8')"><div class="course-card-icon">🏆</div><div><h3>Финальный проект</h3><p>Создание собственного полного трека в REAPER</p></div></div>
+      <div class="course-card" onclick="showPage('lab8')"><div class="course-card-icon">🏆</div><div><h3>Собственный проект</h3><p>Создай оригинальный трек в мини-Рипере прямо в браузере</p></div></div>
     </div>
   </div>
 
@@ -1410,58 +1410,6 @@ code {
     </div>
     <div class="section"><div class="section-label">✅ Вывод</div><p>MIDI открывает безграничные возможности для создания музыки. Piano Roll REAPER — один из самых удобных редакторов нот. Квантайз и velocity — два ключевых инструмента профессиональной MIDI-работы.</p></div>
 
-    <!-- Mini Piano Roll встроен в лекцию -->
-    <div class="section" style="margin-top:24px;">
-      <div class="section-label">🎹 Мини Piano Roll — попробуй сам</div>
-      <div id="piano-roll-container-lec5">
-        <div class="pr-header">
-          <h3>🎹 Piano Roll</h3>
-          <div class="pr-controls">
-            <select class="pr-select" id="pr-quantize-lec5">
-              <option value="0.5">Квантайз: 1/2</option>
-              <option value="0.25" selected>Квантайз: 1/4</option>
-              <option value="0.125">Квантайз: 1/8</option>
-              <option value="0.0625">Квантайз: 1/16</option>
-            </select>
-            <select class="pr-select" id="pr-instrument-lec5">
-              <option value="sine">Синус</option>
-              <option value="square">Квадрат</option>
-              <option value="sawtooth">Пила</option>
-              <option value="triangle">Треугольник</option>
-            </select>
-            <button class="pr-btn" id="pr-play-btn-lec5" onclick="prTogglePlayLec5()">▶ Играть</button>
-            <button class="pr-btn" onclick="prClearLec5()">🗑 Очистить</button>
-            <button class="pr-btn" onclick="prQuantizeAllLec5()">⚡ Квантайз</button>
-          </div>
-        </div>
-        <!-- Полоска воспроизведения -->
-        <div id="pr-playbar-lec5" style="background:var(--surface2);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:12px;">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);">Позиция:</span>
-          <div style="flex:1;height:6px;background:var(--border);border-radius:3px;position:relative;cursor:pointer;" id="pr-seek-bar-lec5">
-            <div id="pr-seek-fill-lec5" style="height:100%;width:0%;background:var(--accent);border-radius:3px;transition:width 0.05s;"></div>
-            <div id="pr-seek-head-lec5" style="position:absolute;top:50%;left:0%;transform:translate(-50%,-50%);width:12px;height:12px;background:var(--accent);border-radius:50%;border:2px solid var(--bg);"></div>
-          </div>
-          <span id="pr-time-lec5" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);min-width:40px;">0.00s</span>
-        </div>
-        <div class="pr-body">
-          <div class="pr-piano-keys" id="pr-keys-lec5"></div>
-          <div class="pr-grid-container" id="pr-grid-container-lec5">
-            <canvas id="pr-canvas-lec5"></canvas>
-          </div>
-        </div>
-        <div class="pr-velocity-panel">
-          <div class="pr-vel-label">Velocity (сила нажатия)</div>
-          <canvas id="vel-canvas-lec5" height="60"></canvas>
-        </div>
-      </div>
-      <ul class="styled-list" style="margin-top:16px;">
-        <li><strong>Нарисовать ноту:</strong> кликните на сетке Piano Roll</li>
-        <li><strong>Удалить ноту:</strong> кликните правой кнопкой мыши</li>
-        <li><strong>Velocity:</strong> кликните на столбик внизу и тяните вверх/вниз</li>
-        <li><strong>Квантайз:</strong> выберите сетку и нажмите «Квантайз»</li>
-        <li><strong>Воспроизведение:</strong> кнопка ▶ Играть — полоска показывает текущую позицию</li>
-      </ul>
-    </div>
   </div>
 
   <!-- LECTURE 6 -->
@@ -1696,54 +1644,1093 @@ code {
   <!-- LAB 8 FINAL -->
   <div id="page-lab8" class="page">
     <div class="page-header">
-      <div class="page-type type-lab">🏆 ЛАБОРАТОРНАЯ РАБОТА №8 — ФИНАЛЬНАЯ</div>
-      <h2>Создание собственного музыкального проекта</h2>
+      <div class="page-type type-lab">🏆 ЛАБОРАТОРНАЯ РАБОТА №8 — СОБСТВЕННЫЙ ПРОЕКТ</div>
+      <h2>Собственный музыкальный проект</h2>
     </div>
-    <div class="section"><div class="section-label">🎯 Цель</div><p>Применить все полученные знания и навыки курса для создания законченного музыкального произведения в REAPER — от идеи до финального экспорта.</p></div>
-    <div class="section"><div class="section-label">📋 Задача</div>
-      <p>Создать оригинальный трек продолжительностью не менее 1 минуты, содержащий:</p>
+
+    <div class="section"><div class="section-label">🎯 Цель</div>
+      <p>Создать законченное, оригинальное музыкальное произведение в REAPER, применив весь арсенал знаний и техник курса: многодорожечную запись, MIDI-программирование, сведение, автоматизацию и мастеринг. Это ваш первый полноценный авторский релиз.</p>
+    </div>
+
+    <div class="section"><div class="section-label">📋 Обязательные требования</div>
+      <p>Проект должен содержать <strong>все</strong> следующие элементы:</p>
       <ul class="styled-list">
-        <li>Не менее 4 дорожек (например: бас, ударные/биты, мелодия, вокал/атмосфера)</li>
-        <li>Минимум 1 MIDI-дорожку с партией в Piano Roll</li>
-        <li>Применённые плагины: EQ, компрессор, реверберация</li>
-        <li>Сведение с корректными уровнями и панорамой</li>
-        <li>Маркеры структуры (вступление, куплет, припев и т.д.)</li>
-        <li>Финальный экспорт в WAV и MP3</li>
+        <li><strong>Минимум 6 дорожек</strong> — ударные/перкуссия, бас, гармония, мелодия/лид, вокал или атмосфера, мастер-шина</li>
+        <li><strong>MIDI-программирование</strong> — минимум 2 MIDI-партии в Piano Roll с настроенным velocity, квантайзом и динамикой</li>
+        <li><strong>Живая запись</strong> — хотя бы один аудио-трек с живым звуком (голос, инструмент, перкуссия)</li>
+        <li><strong>FX-обработка</strong> — ReaEQ + ReaComp на каждой дорожке, реверберация на Aux-шине, лимитер на мастере</li>
+        <li><strong>Автоматизация</strong> — минимум 2 кривые автоматизации (громкость, панорама или параметр плагина)</li>
+        <li><strong>Side-chain компрессия</strong> — pumping-эффект (бас под бочку или аналог)</li>
+        <li><strong>Структура и маркеры</strong> — Intro, Verse, Chorus, Bridge, Outro с именованными маркерами</li>
+        <li><strong>Длительность</strong> — не менее 2 минут</li>
+        <li><strong>Экспорт</strong> — WAV 24bit/44.1kHz, MP3 320kbps, стемы всех дорожек</li>
       </ul>
     </div>
+
     <div class="section">
-      <div class="section-label">📄 Рекомендации по структуре проекта</div>
-      <h3>Вариант 1: Электронный трек</h3>
+      <div class="section-label">📐 Структура и жанровые варианты</div>
+      <h3>Вариант A — Электронная музыка (Lo-fi / House / Trap)</h3>
       <ul class="styled-list">
-        <li>Дорожка 1: Драм-машина (MIDI → VSTi Drum Synth или сэмплы)</li>
-        <li>Дорожка 2: Бас-синтезатор (MIDI → ReaSynth)</li>
-        <li>Дорожка 3: Лид-синтезатор (MIDI → любой VSTi)</li>
-        <li>Дорожка 4: Атмосфера/пэд (MIDI или аудио)</li>
+        <li>Дорожка 1: Драм-машина — MIDI → VSTi или сэмплы (kick, snare, hi-hat)</li>
+        <li>Дорожка 2: Бас-синтезатор — MIDI → ReaSynth (сабвуфер или wobble-бас)</li>
+        <li>Дорожка 3: Пэд / атмосфера — MIDI → синтезатор с долгими нотами</li>
+        <li>Дорожка 4: Лид-мелодия — MIDI с чёткой запоминающейся темой</li>
+        <li>Дорожка 5: Сэмпл или вокал-чоп — аудио с монтажом</li>
+        <li>Дорожка 6: FX-дорожка (рисёр, даунлифтер) — автоматизация</li>
       </ul>
-      <h3 style="margin-top:16px;">Вариант 2: Акустическая аранжировка</h3>
+      <h3 style="margin-top:16px;">Вариант B — Акустическая аранжировка (Indie / Folk / Acoustic Pop)</h3>
       <ul class="styled-list">
-        <li>Дорожка 1: Живая запись гитары или укулеле</li>
-        <li>Дорожка 2: MIDI-пианино</li>
-        <li>Дорожка 3: Живой вокал или речь</li>
-        <li>Дорожка 4: Перкуссия (аудио или MIDI)</li>
+        <li>Дорожка 1: Живая акустическая гитара — запись через микрофон</li>
+        <li>Дорожка 2: Перкуссия (живая или MIDI-кахон/шейкер)</li>
+        <li>Дорожка 3: MIDI-пианино или Rhodes</li>
+        <li>Дорожка 4: Живой вокал — обязательно с ReaEQ и компрессором</li>
+        <li>Дорожка 5: MIDI-струнные (виолончель, скрипка)</li>
+        <li>Дорожка 6: Бэк-вокал или гармония</li>
       </ul>
-      <h3 style="margin-top:16px;">Критерии оценки</h3>
+      <h3 style="margin-top:16px;">Вариант C — Саундтрек / Ambient (Film Score / Cinematic)</h3>
+      <ul class="styled-list">
+        <li>Дорожка 1: Оркестровые ударные — MIDI с нарастающей динамикой</li>
+        <li>Дорожка 2: Басовые пульсации — MIDI с автоматизацией громкости</li>
+        <li>Дорожка 3: Струнный ансамбль — MIDI с длинными крещендо</li>
+        <li>Дорожка 4: Атмосферные текстуры — синтезатор или обработанный аудио</li>
+        <li>Дорожка 5: Соло-инструмент (флейта, фортепиано, гитара)</li>
+        <li>Дорожка 6: Хор или вокальный пэд</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-label">🔬 Мини-REAPER — Рабочее пространство</div>
+      <p style="color:var(--text-dim);font-size:13px;margin-bottom:16px;">Используй этот мини-Рипер для планирования и выполнения работы прямо здесь. Добавляй треки, расставляй клипы, настраивай параметры — а затем воспроизведи проект.</p>
+
+      <!-- MINI REAPER DAW -->
+      <div id="mini-reaper" style="background:#141414;border:1px solid #444;border-radius:10px;overflow:hidden;font-family:'JetBrains Mono',monospace;user-select:none;">
+
+        <!-- Меню -->
+        <div style="background:#2a2a2a;display:flex;align-items:center;padding:3px 8px;gap:2px;border-bottom:1px solid #3a3a3a;">
+          <span style="font-size:11px;font-weight:700;color:#4a9eff;margin-right:10px;">REAPER mini</span>
+          <div class="r-menu-item" onclick="mrAddTrack()" style="font-size:11px;">Трек</div>
+          <div class="r-menu-item" onclick="mrAddMarker()" style="font-size:11px;">Маркер</div>
+          <div class="r-menu-item" onclick="mrOpenPianoRoll()" style="font-size:11px;">Piano Roll</div>
+          <div class="r-menu-item" onclick="mrOpenMixer()" style="font-size:11px;">Микшер</div>
+          <div class="r-menu-item" onclick="mrOpenFX()" style="font-size:11px;">FX</div>
+          <div class="r-menu-item" onclick="mrRender()" style="font-size:11px;margin-left:auto;color:#4aff9e;">▣ Рендер</div>
+        </div>
+
+        <!-- Тулбар -->
+        <div style="background:#1e1e1e;display:flex;align-items:center;padding:4px 10px;gap:6px;border-bottom:1px solid #2a2a2a;flex-wrap:wrap;">
+          <button class="r-btn" id="mr-tool-cursor" onclick="mrSetTool('cursor')" style="font-size:10px;">✦ Курсор</button>
+          <button class="r-btn" id="mr-tool-draw" onclick="mrSetTool('draw')" style="font-size:10px;">✏ Рисовать</button>
+          <button class="r-btn" id="mr-tool-erase" onclick="mrSetTool('erase')" style="font-size:10px;">✕ Ластик</button>
+          <div style="width:1px;height:20px;background:#3a3a3a;margin:0 4px;"></div>
+          <button class="r-btn" id="mr-snap-btn" onclick="mrToggleSnap()" style="font-size:10px;">⊞ Snap: ВКЛ</button>
+          <button class="r-btn" onclick="mrToggleLoop()" id="mr-loop-btn" style="font-size:10px;">⟳ Loop: ВЫКЛ</button>
+          <div style="width:1px;height:20px;background:#3a3a3a;margin:0 4px;"></div>
+          <select id="mr-bpm-sel" onchange="mrSetBPM(this.value)" style="background:#111;border:1px solid #444;color:#ffaa33;padding:2px 6px;border-radius:3px;font-size:10px;font-family:'JetBrains Mono',monospace;">
+            <option value="60">60 BPM</option>
+            <option value="80">80 BPM</option>
+            <option value="90">90 BPM</option>
+            <option value="100">100 BPM</option>
+            <option value="120" selected>120 BPM</option>
+            <option value="128">128 BPM</option>
+            <option value="140">140 BPM</option>
+            <option value="160">160 BPM</option>
+          </select>
+          <select id="mr-sig-sel" style="background:#111;border:1px solid #444;color:#aaa;padding:2px 6px;border-radius:3px;font-size:10px;font-family:'JetBrains Mono',monospace;">
+            <option value="4/4" selected>4/4</option>
+            <option value="3/4">3/4</option>
+            <option value="6/8">6/8</option>
+            <option value="5/4">5/4</option>
+          </select>
+          <span id="mr-project-name" style="margin-left:auto;font-size:10px;color:#666;cursor:pointer;" ondblclick="mrRenameProject()" title="Двойной клик для переименования">📁 Мой проект</span>
+        </div>
+
+        <!-- Транспорт -->
+        <div style="background:#111;display:flex;align-items:center;gap:8px;padding:6px 14px;border-bottom:1px solid #2a2a2a;">
+          <div class="r-transport-btn" onclick="mrGoStart()" title="В начало">⏮</div>
+          <div class="r-transport-btn play-btn" id="mr-play-btn" onclick="mrTogglePlay()" title="Play/Stop (Пробел)">▶</div>
+          <div class="r-transport-btn record-btn" id="mr-rec-btn" onclick="mrToggleRecord()" title="Запись">⏺</div>
+          <div class="r-transport-btn" onclick="mrGoEnd()" title="В конец">⏭</div>
+          <div id="mr-time-disp" style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#4aff4a;background:#050505;padding:4px 12px;border-radius:4px;border:1px solid #2a2a2a;min-width:100px;text-align:center;">0:00.000</div>
+          <div id="mr-bars-disp" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ffaa33;background:#050505;padding:4px 10px;border-radius:4px;border:1px solid #2a2a2a;">Такт 1 | Доля 1</div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
+            <span style="font-size:10px;color:#666;">Мастер:</span>
+            <input type="range" id="mr-master-vol" min="0" max="100" value="80" style="width:70px;" oninput="mrSetMasterVol(this.value)" title="Мастер громкость">
+            <span id="mr-master-vol-val" style="font-size:10px;color:#888;min-width:30px;">-3dB</span>
+          </div>
+        </div>
+
+        <!-- Основное рабочее пространство -->
+        <div style="display:flex;background:#141414;min-height:260px;position:relative;" id="mr-workspace">
+          <!-- Панель дорожек -->
+          <div style="width:170px;flex-shrink:0;border-right:1px solid #2a2a2a;overflow-y:auto;" id="mr-tracks-panel">
+            <!-- Шапка линейки -->
+            <div style="height:24px;background:#1a1a1a;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;padding:0 8px;">
+              <span style="font-size:9px;color:#444;">ДОРОЖКИ</span>
+              <button onclick="mrAddTrack()" style="margin-left:auto;background:none;border:1px solid #333;color:#4a9eff;border-radius:3px;padding:1px 6px;font-size:10px;cursor:pointer;" title="Добавить дорожку (Ctrl+T)">+ трек</button>
+            </div>
+            <div id="mr-tracks-list"></div>
+          </div>
+
+          <!-- Временная шкала + клипы -->
+          <div style="flex:1;overflow:auto;position:relative;" id="mr-timeline-area">
+            <!-- Линейка -->
+            <canvas id="mr-ruler-canvas" style="display:block;width:100%;height:24px;background:#1a1a1a;border-bottom:1px solid #2a2a2a;cursor:pointer;" onclick="mrRulerClick(event)"></canvas>
+            <!-- Клипы -->
+            <div id="mr-clips-area" style="position:relative;"></div>
+          </div>
+        </div>
+
+        <!-- Маркеры -->
+        <div id="mr-markers-bar" style="background:#1a1a1a;border-top:1px solid #2a2a2a;padding:4px 10px;display:flex;gap:6px;flex-wrap:wrap;min-height:28px;align-items:center;">
+          <span style="font-size:9px;color:#555;flex-shrink:0;">МАРКЕРЫ:</span>
+          <div id="mr-markers-list" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+        </div>
+
+        <!-- Нижняя панель статуса -->
+        <div id="mr-status" style="background:#0a0a0a;padding:5px 14px;font-size:10px;color:#555;border-top:1px solid #1a1a1a;min-height:22px;"></div>
+      </div>
+
+      <!-- Piano Roll для mini-reaper -->
+      <div id="mr-piano-roll-modal" style="display:none;margin-top:12px;background:#141414;border:1px solid #4a9eff;border-radius:8px;overflow:hidden;">
+        <div style="background:#1e2a3a;padding:8px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a3a4a;">
+          <span style="font-size:12px;color:#4a9eff;font-family:'JetBrains Mono',monospace;">🎹 Piano Roll — <span id="mr-pr-track-name">дорожка</span></span>
+          <select id="mr-pr-quantize" style="background:#111;border:1px solid #333;color:#ccc;padding:2px 6px;border-radius:3px;font-size:10px;font-family:'JetBrains Mono',monospace;">
+            <option value="0.5">1/2</option>
+            <option value="0.25" selected>1/4</option>
+            <option value="0.125">1/8</option>
+            <option value="0.0625">1/16</option>
+          </select>
+          <select id="mr-pr-sound" style="background:#111;border:1px solid #333;color:#ccc;padding:2px 6px;border-radius:3px;font-size:10px;font-family:'JetBrains Mono',monospace;">
+            <option value="sine">Синус</option>
+            <option value="square">Квадрат</option>
+            <option value="sawtooth">Пила</option>
+            <option value="triangle">Треугольник</option>
+          </select>
+          <button class="r-btn" onclick="mrPrPlay()" style="font-size:10px;" id="mr-pr-play-btn">▶ Играть</button>
+          <button class="r-btn" onclick="mrPrQuantize()" style="font-size:10px;">⚡ Квантайз</button>
+          <button class="r-btn" onclick="mrPrClear()" style="font-size:10px;">🗑 Очистить</button>
+          <button class="r-btn" onclick="mrClosePianoRoll()" style="font-size:10px;margin-left:auto;color:#ff7043;">✕ Закрыть</button>
+        </div>
+        <div style="display:flex;">
+          <div id="mr-pr-keys" style="width:52px;flex-shrink:0;background:#1a1a1a;border-right:1px solid #2a2a2a;overflow-y:hidden;"></div>
+          <div style="flex:1;overflow:auto;">
+            <canvas id="mr-pr-canvas" style="display:block;cursor:crosshair;"></canvas>
+          </div>
+        </div>
+        <div style="background:#1a1a1a;padding:8px 14px;border-top:1px solid #2a2a2a;">
+          <div style="font-size:9px;color:#555;font-family:'JetBrains Mono',monospace;margin-bottom:4px;">VELOCITY</div>
+          <canvas id="mr-pr-vel-canvas" height="48" style="display:block;cursor:ns-resize;border:1px solid #2a2a2a;border-radius:3px;"></canvas>
+        </div>
+      </div>
+
+      <!-- Микшер -->
+      <div id="mr-mixer-modal" style="display:none;margin-top:12px;background:#141414;border:1px solid #444;border-radius:8px;overflow:hidden;">
+        <div style="background:#1e1e1e;padding:8px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a2a2a;">
+          <span style="font-size:12px;color:#4a9eff;font-family:'JetBrains Mono',monospace;">🎚 Микшер</span>
+          <button class="r-btn" onclick="mrCloseMixer()" style="font-size:10px;margin-left:auto;color:#ff7043;">✕ Закрыть</button>
+        </div>
+        <div id="mr-mixer-channels" style="display:flex;gap:2px;padding:10px;overflow-x:auto;min-height:180px;background:#0d0d0d;align-items:flex-end;"></div>
+      </div>
+
+      <!-- FX панель -->
+      <div id="mr-fx-modal" style="display:none;margin-top:12px;background:#141414;border:1px solid #444;border-radius:8px;overflow:hidden;">
+        <div style="background:#1e1e1e;padding:8px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a2a2a;">
+          <span style="font-size:12px;color:#4a9eff;font-family:'JetBrains Mono',monospace;">🔧 FX-цепочка — <span id="mr-fx-track-name">дорожка</span></span>
+          <button class="r-btn" onclick="mrCloseFX()" style="font-size:10px;margin-left:auto;color:#ff7043;">✕ Закрыть</button>
+        </div>
+        <div id="mr-fx-chain" style="padding:12px;display:flex;flex-direction:column;gap:10px;"></div>
+        <div style="padding:8px 12px;border-top:1px solid #222;display:flex;gap:8px;">
+          <button class="r-btn" onclick="mrAddEQ()" style="font-size:10px;">+ ReaEQ</button>
+          <button class="r-btn" onclick="mrAddComp()" style="font-size:10px;">+ ReaComp</button>
+          <button class="r-btn" onclick="mrAddReverb()" style="font-size:10px;">+ ReaVerb</button>
+          <button class="r-btn" onclick="mrAddDelay()" style="font-size:10px;">+ ReaDelay</button>
+          <button class="r-btn" onclick="mrAddLimiter()" style="font-size:10px;">+ Лимитер</button>
+        </div>
+      </div>
+
+      <!-- Рендер диалог -->
+      <div id="mr-render-modal" style="display:none;margin-top:12px;background:#141414;border:1px solid #4aff4a;border-radius:8px;overflow:hidden;">
+        <div style="background:#1a2a1a;padding:10px 14px;border-bottom:1px solid #2a3a2a;">
+          <span style="font-size:12px;color:#4aff4a;font-family:'JetBrains Mono',monospace;">▣ Рендеринг проекта</span>
+        </div>
+        <div style="padding:14px;display:flex;flex-direction:column;gap:10px;font-size:12px;color:#aaa;">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <label style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:140px;">
+              <span style="font-size:10px;color:#666;font-family:'JetBrains Mono',monospace;">ГРАНИЦЫ</span>
+              <select id="mr-render-bounds" style="background:#1a1a1a;border:1px solid #333;color:#ccc;padding:4px 8px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;">
+                <option value="project">Весь проект</option>
+                <option value="selection">Выделение</option>
+                <option value="markers">По маркерам</option>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:140px;">
+              <span style="font-size:10px;color:#666;font-family:'JetBrains Mono',monospace;">ИСТОЧНИК</span>
+              <select id="mr-render-source" style="background:#1a1a1a;border:1px solid #333;color:#ccc;padding:4px 8px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;">
+                <option value="master">Мастер-микс</option>
+                <option value="stems">Стемы (отдельно)</option>
+                <option value="selected">Выбранные дорожки</option>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:140px;">
+              <span style="font-size:10px;color:#666;font-family:'JetBrains Mono',monospace;">ФОРМАТ</span>
+              <select id="mr-render-format" style="background:#1a1a1a;border:1px solid #333;color:#ccc;padding:4px 8px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;">
+                <option value="wav">WAV 24bit / 44.1kHz</option>
+                <option value="mp3">MP3 320kbps</option>
+                <option value="flac">FLAC 24bit</option>
+              </select>
+            </label>
+          </div>
+          <div id="mr-render-progress" style="display:none;">
+            <div style="background:#1a1a1a;border-radius:4px;height:8px;overflow:hidden;">
+              <div id="mr-render-bar" style="height:100%;background:#4aff4a;width:0%;transition:width 0.1s;border-radius:4px;"></div>
+            </div>
+            <div id="mr-render-status" style="font-size:10px;color:#4aff4a;margin-top:6px;font-family:'JetBrains Mono',monospace;"></div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="r-btn" onclick="mrDoRender()" style="font-size:11px;color:#4aff4a;border-color:#4aff4a;">▣ Рендерить</button>
+            <button class="r-btn" onclick="mrCloseRender()" style="font-size:11px;color:#ff7043;">Закрыть</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end section -->
+
+    <div class="section">
+      <div class="section-label">📋 Пошаговый план работы</div>
+      <h3>Фаза 1 — Концепция и подготовка</h3>
+      <ul class="styled-list">
+        <li>Выберите жанр и название проекта (переименуй в мини-Рипере двойным кликом)</li>
+        <li>Определите структуру: Intro → Verse → Chorus → Bridge → Outro</li>
+        <li>Установите BPM и размер (выбор в тулбаре)</li>
+        <li>Создайте все необходимые дорожки через кнопку «+ трек»</li>
+        <li>Расставьте маркеры структуры через меню «Маркер»</li>
+      </ul>
+      <h3 style="margin-top:16px;">Фаза 2 — Создание контента</h3>
+      <ul class="styled-list">
+        <li>Нарисуйте клипы на каждой дорожке в рабочей области (инструмент «✏ Рисовать»)</li>
+        <li>Откройте Piano Roll для MIDI-дорожек через меню и запрограммируйте партии</li>
+        <li>Настройте velocity каждой ноты в редакторе Piano Roll</li>
+        <li>Примените квантайз там, где нужна чёткость сетки</li>
+      </ul>
+      <h3 style="margin-top:16px;">Фаза 3 — Обработка и сведение</h3>
+      <ul class="styled-list">
+        <li>Откройте FX-цепочку каждой дорожки и добавьте ReaEQ + ReaComp</li>
+        <li>Настройте микшер: уровни, панорама, соло/мут</li>
+        <li>Добавьте ReaVerb на отдельную шину, отправьте вокал/инструменты через сенд</li>
+        <li>Настройте side-chain: бас под бочку</li>
+      </ul>
+      <h3 style="margin-top:16px;">Фаза 4 — Мастеринг и экспорт</h3>
+      <ul class="styled-list">
+        <li>Добавьте лимитер на мастер через FX</li>
+        <li>Проверьте финальный уровень — не выше -1 dBTP</li>
+        <li>Откройте «▣ Рендер» — экспортируйте WAV, MP3, стемы</li>
+        <li>Заполните метаданные в диалоге рендера</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-label">🏆 Критерии оценки</div>
       <div class="table-wrap">
         <table>
-          <tr><th>Критерий</th><th>Баллы</th></tr>
-          <tr><td>Наличие всех обязательных дорожек (≥4)</td><td>20</td></tr>
-          <tr><td>MIDI-партия в Piano Roll</td><td>15</td></tr>
-          <tr><td>Применение EQ и компрессора</td><td>15</td></tr>
-          <tr><td>Качество сведения (баланс, панорама)</td><td>20</td></tr>
-          <tr><td>Структура и маркеры</td><td>10</td></tr>
-          <tr><td>Финальный экспорт (WAV + MP3)</td><td>10</td></tr>
-          <tr><td>Творческий подход и оригинальность</td><td>10</td></tr>
+          <tr><th>Критерий</th><th>Описание</th><th>Баллы</th></tr>
+          <tr><td>Количество дорожек (≥6)</td><td>Полноценная многодорожечная аранжировка</td><td>15</td></tr>
+          <tr><td>MIDI-программирование (≥2 партии)</td><td>Velocity, квантайз, динамика</td><td>15</td></tr>
+          <tr><td>Живая запись</td><td>Хотя бы один аудио-трек с реальным звуком</td><td>10</td></tr>
+          <tr><td>FX-обработка (EQ + Comp + Reverb)</td><td>На каждой дорожке, настроенные параметры</td><td>15</td></tr>
+          <tr><td>Автоматизация (≥2 кривые)</td><td>Динамика развития трека</td><td>10</td></tr>
+          <tr><td>Side-chain компрессия</td><td>Pumping или аналогичный эффект</td><td>5</td></tr>
+          <tr><td>Сведение (баланс, панорама, динамика)</td><td>Профессиональное звучание</td><td>10</td></tr>
+          <tr><td>Структура и маркеры</td><td>Все части трека именованы</td><td>5</td></tr>
+          <tr><td>Длительность ≥2 мин</td><td>Полноценное произведение</td><td>5</td></tr>
+          <tr><td>Экспорт (WAV + MP3 + стемы)</td><td>Все форматы корректно созданы</td><td>5</td></tr>
+          <tr><td>Оригинальность и творческий подход</td><td>Авторская идея, нестандартные решения</td><td>5</td></tr>
         </table>
       </div>
-      <div class="callout warn">⚠️ Финальная работа — это квинтэссенция всего курса. Не спешите: уделите внимание каждому этапу.</div>
+      <div class="callout warn">⚠️ Это самая сложная работа курса. Начните с концепции — жанр, настроение, инструменты — и двигайтесь пошагово. Качество важнее скорости.</div>
+      <div class="callout success">✅ Используй мини-Рипер выше для выполнения всех этапов прямо в браузере!</div>
     </div>
-    <div class="section"><div class="section-label">✅ Вывод</div><p>Финальный проект демонстрирует полное освоение DAW REAPER: от создания проекта и записи до сведения и экспорта. Созданный трек — ваш первый профессиональный аудиопроект, сделанный самостоятельно с нуля.</p></div>
+
+    <div class="section"><div class="section-label">✅ Вывод</div>
+      <p>Собственный проект — кульминация всего курса. Здесь нет ограничений кроме ваших знаний и фантазии. Каждый элемент — от первой ноты в Piano Roll до финального лимитера на мастере — это ваш осознанный творческий выбор. Созданный трек станет первым шагом в профессиональном аудиопроизводстве.</p>
+    </div>
   </div>
+
+  <script>
+  // ============================================================
+  // MINI REAPER DAW
+  // ============================================================
+  var mrState = {
+    tracks: [],
+    clips: [],
+    markers: [],
+    playing: false,
+    recording: false,
+    currentTime: 0,
+    bpm: 120,
+    snap: true,
+    loop: false,
+    loopStart: 0,
+    loopEnd: 8,
+    tool: 'cursor',
+    masterVol: 80,
+    activeFXTrack: null,
+    activePRTrack: null,
+    prNotes: {},
+    fxChains: {},
+    mixerState: {},
+    projectName: 'Мой проект',
+    intervalId: null,
+    startRealTime: 0,
+    startProjectTime: 0,
+    totalBeats: 16,
+    viewOffset: 0,
+    renderQueue: []
+  };
+
+  var mrColors = ['#2d5a7a','#2d6040','#4d2d5a','#5a4020','#1a3a5a','#3a2d5a','#2d4a3a','#5a2d2d'];
+
+  function mrInit() {
+    // Default tracks
+    var defaultTracks = [
+      {name:'Drums', type:'audio', color:'#2d3a4a'},
+      {name:'Bass MIDI', type:'midi', color:'#2d4a2d'},
+      {name:'Lead Synth', type:'midi', color:'#4a2d4a'},
+      {name:'Vocal', type:'audio', color:'#4a3a1a'}
+    ];
+    defaultTracks.forEach(function(t,i) {
+      mrAddTrackData(t.name, t.type, t.color);
+    });
+    // Default clips
+    mrState.clips.push({trackId:mrState.tracks[0].id, start:0, len:4, name:'Drums_loop', color:'#2d3a5a'});
+    mrState.clips.push({trackId:mrState.tracks[0].id, start:4, len:4, name:'Drums_loop', color:'#2d3a5a'});
+    mrState.clips.push({trackId:mrState.tracks[1].id, start:0, len:8, name:'Bass MIDI', color:'#2d5a2d'});
+    mrState.clips.push({trackId:mrState.tracks[2].id, start:2, len:6, name:'Lead MIDI', color:'#4a2d5a'});
+    mrRenderTracks();
+    mrRenderClips();
+    mrUpdateRuler();
+    mrUpdateMarkers();
+    mrSetStatus('Проект загружен. Добавьте треки, нарисуйте клипы и откройте Piano Roll!');
+  }
+
+  function mrAddTrackData(name, type, color) {
+    var id = 'tr_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
+    var vol = 80, pan = 50, muted = false, soloed = false;
+    mrState.tracks.push({id:id,name:name||'Трек '+(mrState.tracks.length+1),type:type||'audio',color:color||mrColors[mrState.tracks.length%mrColors.length],vol:vol,pan:pan,muted:muted,soloed:soloed});
+    mrState.prNotes[id] = [];
+    mrState.fxChains[id] = [];
+    mrState.mixerState[id] = {vol:vol,pan:pan,muted:muted,soloed:soloed};
+  }
+
+  function mrAddTrack() {
+    var name = prompt('Имя дорожки:', 'Трек '+(mrState.tracks.length+1));
+    if (!name) return;
+    var types = ['audio','midi'];
+    var type = confirm('MIDI-дорожка? (OK=MIDI, Отмена=Аудио)') ? 'midi' : 'audio';
+    mrAddTrackData(name, type);
+    mrRenderTracks();
+    mrRenderClips();
+    mrSetStatus('Добавлена дорожка: '+name);
+  }
+
+  function mrRenderTracks() {
+    var list = document.getElementById('mr-tracks-list');
+    if (!list) return;
+    list.innerHTML = '';
+    mrState.tracks.forEach(function(t) {
+      var div = document.createElement('div');
+      div.style.cssText = 'height:52px;background:#1e1e1e;border-bottom:1px solid #2a2a2a;padding:6px 8px;display:flex;flex-direction:column;gap:3px;cursor:pointer;transition:background 0.1s;border-left:3px solid '+t.color+';';
+      div.onmouseenter = function(){this.style.background='#252525';};
+      div.onmouseleave = function(){this.style.background='#1e1e1e';};
+      var top = '<div style="display:flex;align-items:center;gap:4px;">';
+      top += '<span style="font-size:10px;color:#ccc;font-family:\'JetBrains Mono\',monospace;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="Двойной клик для переименования" ondblclick="mrRenameTrack(\''+t.id+'\')">'+(t.type==='midi'?'🎹 ':'🎵 ')+t.name+'</span>';
+      top += '<span style="font-size:8px;color:#555;">'+t.type.toUpperCase()+'</span>';
+      top += '</div>';
+      var btns = '<div style="display:flex;gap:3px;align-items:center;">';
+      btns += '<div onclick="mrArmTrack(\''+t.id+'\')" title="Запись" style="width:16px;height:14px;background:#aa2200;border:1px solid #cc3300;color:#fff;border-radius:2px;font-size:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;">R</div>';
+      btns += '<div onclick="mrMuteTrack(\''+t.id+'\')" title="Mute" style="width:16px;height:14px;background:'+(t.muted?'#555500':'#333')+';border:1px solid '+(t.muted?'#777700':'#555')+';color:'+(t.muted?'#ffff00':'#999')+';border-radius:2px;font-size:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;">M</div>';
+      btns += '<div onclick="mrSoloTrack(\''+t.id+'\')" title="Solo" style="width:16px;height:14px;background:'+(t.soloed?'#aa7700':'#333')+';border:1px solid '+(t.soloed?'#cc9900':'#555')+';color:'+(t.soloed?'#ffcc00':'#999')+';border-radius:2px;font-size:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;">S</div>';
+      btns += '<div onclick="mrOpenFXForTrack(\''+t.id+'\')" title="FX-цепочка" style="width:20px;height:14px;background:#223;border:1px solid #335;color:#4a9eff;border-radius:2px;font-size:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;">FX</div>';
+      btns += '<div onclick="mrOpenPianoRollForTrack(\''+t.id+'\')" title="Piano Roll (только MIDI)" style="width:20px;height:14px;background:'+(t.type==='midi'?'#223300':'#222')+';border:1px solid '+(t.type==='midi'?'#4a9eff':'#333')+';color:'+(t.type==='midi'?'#88ff44':'#444')+';border-radius:2px;font-size:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;">PR</div>';
+      btns += '<div onclick="mrDeleteTrack(\''+t.id+'\')" title="Удалить" style="width:14px;height:14px;background:#2a0000;border:1px solid #550000;color:#ff4444;border-radius:2px;font-size:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;">×</div>';
+      btns += '</div>';
+      div.innerHTML = top+btns;
+      list.appendChild(div);
+    });
+  }
+
+  function mrRenderClips() {
+    var area = document.getElementById('mr-clips-area');
+    if (!area) return;
+    var timelineW = document.getElementById('mr-timeline-area').clientWidth||600;
+    var beatsVisible = mrState.totalBeats;
+    var pxPerBeat = (timelineW - 10) / beatsVisible;
+    area.innerHTML = '';
+    area.style.height = (mrState.tracks.length * 52) + 'px';
+    area.style.position = 'relative';
+    area.style.minWidth = timelineW+'px';
+
+    // Track rows background
+    mrState.tracks.forEach(function(t, idx) {
+      var row = document.createElement('div');
+      row.style.cssText = 'position:absolute;top:'+(idx*52)+'px;left:0;right:0;height:52px;border-bottom:1px solid #1a1a1a;background:'+(idx%2===0?'#141414':'#161616')+';';
+      row.setAttribute('data-track-id', t.id);
+      row.setAttribute('data-track-idx', idx);
+      row.onmousedown = function(e){ mrClipAreaMouseDown(e, t.id, idx); };
+      area.appendChild(row);
+    });
+
+    // Clips
+    mrState.clips.forEach(function(clip, ci) {
+      var tidx = mrState.tracks.findIndex(function(t){return t.id===clip.trackId;});
+      if (tidx < 0) return;
+      var x = clip.start * pxPerBeat + 4;
+      var w = Math.max(clip.len * pxPerBeat - 4, 16);
+      var y = tidx * 52 + 3;
+      var el = document.createElement('div');
+      el.style.cssText = 'position:absolute;top:'+y+'px;left:'+x+'px;width:'+w+'px;height:46px;background:'+clip.color+';border:1px solid rgba(255,255,255,0.2);border-radius:3px;cursor:pointer;overflow:hidden;display:flex;align-items:flex-start;padding:3px 5px;transition:box-shadow 0.1s;z-index:1;';
+      el.title = clip.name + ' | Такт '+(clip.start+1)+' – '+(clip.start+clip.len+1);
+      el.onmouseenter = function(){this.style.boxShadow='0 0 8px rgba(74,158,255,0.5)';};
+      el.onmouseleave = function(){this.style.boxShadow='none';};
+      el.onclick = function(e){e.stopPropagation(); if(mrState.tool==='erase'){mrDeleteClip(ci);} else {mrSetStatus('Клип: '+clip.name+' | начало: такт '+(Math.round(clip.start*10)/10+1)+' длина: '+clip.len+' тактов');} };
+      el.ondblclick = function(e){e.stopPropagation(); mrRenameClip(ci);};
+      var wave = '<svg style="position:absolute;bottom:0;left:0;right:0;height:20px;opacity:0.4;" viewBox="0 0 200 20" preserveAspectRatio="none"><polyline points="';
+      for(var i=0;i<=20;i++){wave+=(i*10)+','+(10+Math.sin(i*1.3+ci)*7)+' ';}
+      wave+='" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/></svg>';
+      el.innerHTML = '<span style="font-size:9px;color:rgba(255,255,255,0.8);font-family:\'JetBrains Mono\',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;">'+clip.name+'</span>'+wave;
+      area.appendChild(el);
+    });
+
+    // Playhead
+    var ph = document.createElement('div');
+    var phPct = mrState.currentTime / mrState.totalBeats;
+    ph.id = 'mr-playhead';
+    ph.style.cssText = 'position:absolute;top:0;bottom:0;width:2px;background:#ff4444;z-index:10;pointer-events:none;left:'+(phPct*(timelineW-10)+4)+'px;';
+    var phHead = document.createElement('div');
+    phHead.style.cssText = 'width:10px;height:10px;background:#ff4444;border-radius:0 0 3px 3px;margin-left:-4px;';
+    ph.appendChild(phHead);
+    area.appendChild(ph);
+  }
+
+  function mrClipAreaMouseDown(e, trackId, trackIdx) {
+    if (mrState.tool === 'draw') {
+      var area = document.getElementById('mr-clips-area');
+      var rect = area.getBoundingClientRect();
+      var timelineW = document.getElementById('mr-timeline-area').clientWidth||600;
+      var pxPerBeat = (timelineW - 10) / mrState.totalBeats;
+      var beatPos = (e.clientX - rect.left - 4) / pxPerBeat;
+      if (mrState.snap) beatPos = Math.round(beatPos * 2) / 2;
+      beatPos = Math.max(0, beatPos);
+      var track = mrState.tracks.find(function(t){return t.id===trackId;});
+      var clipName = track ? track.name+' clip' : 'Клип';
+      mrState.clips.push({trackId:trackId, start:beatPos, len:2, name:clipName, color: track ? track.color : '#2d5a7a'});
+      mrRenderClips();
+      mrSetStatus('Добавлен клип на дорожку: '+(track?track.name:''));
+    }
+  }
+
+  function mrDeleteClip(idx) {
+    mrState.clips.splice(idx, 1);
+    mrRenderClips();
+    mrSetStatus('Клип удалён');
+  }
+
+  function mrRenameClip(idx) {
+    var name = prompt('Имя клипа:', mrState.clips[idx].name);
+    if (name) { mrState.clips[idx].name = name; mrRenderClips(); }
+  }
+
+  function mrUpdateRuler() {
+    var canvas = document.getElementById('mr-ruler-canvas');
+    if (!canvas) return;
+    var timelineArea = document.getElementById('mr-timeline-area');
+    var w = timelineArea ? timelineArea.clientWidth : 600;
+    canvas.width = w;
+    canvas.height = 24;
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,w,24);
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillRect(0,0,w,24);
+    var pxPerBeat = (w-10) / mrState.totalBeats;
+    ctx.fillStyle = '#444';
+    ctx.font = '9px JetBrains Mono, monospace';
+    for (var i=0; i<=mrState.totalBeats; i++) {
+      var x = i * pxPerBeat + 4;
+      ctx.fillStyle = '#333';
+      ctx.fillRect(x, 0, 1, i%4===0 ? 24 : 12);
+      if (i%4===0) {
+        ctx.fillStyle = '#888';
+        ctx.fillText('Т'+(i/4+1), x+3, 16);
+      } else if (i%2===0) {
+        ctx.fillStyle = '#555';
+        ctx.fillText((i%4===2?'.5':''), x+2, 16);
+      }
+    }
+    // Playhead mark on ruler
+    var phx = mrState.currentTime * pxPerBeat + 4;
+    ctx.fillStyle = '#ff4444';
+    ctx.fillRect(phx-1, 0, 2, 24);
+  }
+
+  function mrRulerClick(e) {
+    var canvas = document.getElementById('mr-ruler-canvas');
+    var rect = canvas.getBoundingClientRect();
+    var timelineW = canvas.width;
+    var pxPerBeat = (timelineW - 10) / mrState.totalBeats;
+    var beat = (e.clientX - rect.left - 4) / pxPerBeat;
+    beat = Math.max(0, Math.min(beat, mrState.totalBeats));
+    if (mrState.snap) beat = Math.round(beat * 2) / 2;
+    mrState.currentTime = beat;
+    mrUpdateTimeDisplay();
+    mrUpdateRuler();
+    mrRenderClips();
+    mrSetStatus('Позиция: такт '+(Math.round(beat*10)/10+1));
+  }
+
+  function mrTogglePlay() {
+    if (mrState.playing) {
+      mrStopPlay();
+    } else {
+      mrStartPlay();
+    }
+  }
+
+  function mrStartPlay() {
+    mrState.playing = true;
+    mrState.startRealTime = performance.now();
+    mrState.startProjectTime = mrState.currentTime;
+    document.getElementById('mr-play-btn').textContent = '⏸';
+    document.getElementById('mr-play-btn').style.background = '#004400';
+    mrPlayLoop();
+    mrSetStatus('Воспроизведение...');
+  }
+
+  function mrStopPlay() {
+    mrState.playing = false;
+    if (mrState.intervalId) {cancelAnimationFrame(mrState.intervalId); mrState.intervalId=null;}
+    document.getElementById('mr-play-btn').textContent = '▶';
+    document.getElementById('mr-play-btn').style.background = '';
+    mrSetStatus('Остановлено. Позиция: такт '+(Math.round(mrState.currentTime*10)/10+1));
+  }
+
+  function mrPlayLoop() {
+    if (!mrState.playing) return;
+    var elapsed = (performance.now() - mrState.startRealTime) / 1000;
+    var beatsPerSec = mrState.bpm / 60;
+    mrState.currentTime = mrState.startProjectTime + elapsed * beatsPerSec;
+    if (mrState.currentTime >= mrState.totalBeats) {
+      if (mrState.loop) {
+        mrState.startRealTime = performance.now();
+        mrState.startProjectTime = 0;
+        mrState.currentTime = 0;
+      } else {
+        mrState.currentTime = mrState.totalBeats;
+        mrStopPlay();
+        mrState.currentTime = 0;
+        mrUpdateTimeDisplay();
+        mrUpdateRuler();
+        mrRenderClips();
+        return;
+      }
+    }
+    mrUpdateTimeDisplay();
+    mrUpdateRuler();
+    mrRenderClips();
+    mrState.intervalId = requestAnimationFrame(mrPlayLoop);
+  }
+
+  function mrToggleRecord() {
+    mrState.recording = !mrState.recording;
+    var btn = document.getElementById('mr-rec-btn');
+    btn.style.background = mrState.recording ? '#cc0000' : '';
+    mrSetStatus(mrState.recording ? '⏺ Запись...' : 'Запись остановлена');
+  }
+
+  function mrGoStart() { mrState.currentTime=0; mrUpdateTimeDisplay(); mrUpdateRuler(); mrRenderClips(); }
+  function mrGoEnd() { mrState.currentTime=mrState.totalBeats; mrUpdateTimeDisplay(); mrUpdateRuler(); mrRenderClips(); }
+
+  function mrUpdateTimeDisplay() {
+    var beatsPerSec = mrState.bpm / 60;
+    var secs = mrState.currentTime / beatsPerSec;
+    var mins = Math.floor(secs/60);
+    var s = (secs%60).toFixed(3);
+    document.getElementById('mr-time-disp').textContent = mins+':'+(secs<10&&mins===0?'0':'')+s;
+    var bar = Math.floor(mrState.currentTime/4)+1;
+    var beat = Math.floor(mrState.currentTime%4)+1;
+    document.getElementById('mr-bars-disp').textContent = 'Такт '+bar+' | Доля '+beat;
+  }
+
+  function mrSetBPM(v) { mrState.bpm = parseInt(v); mrSetStatus('BPM: '+mrState.bpm); }
+
+  function mrToggleSnap() {
+    mrState.snap = !mrState.snap;
+    document.getElementById('mr-snap-btn').textContent = '⊞ Snap: '+(mrState.snap?'ВКЛ':'ВЫКЛ');
+    mrSetStatus('Привязка к сетке: '+(mrState.snap?'включена':'выключена'));
+  }
+
+  function mrToggleLoop() {
+    mrState.loop = !mrState.loop;
+    document.getElementById('mr-loop-btn').textContent = '⟳ Loop: '+(mrState.loop?'ВКЛ':'ВЫКЛ');
+    document.getElementById('mr-loop-btn').style.background = mrState.loop ? '#003300' : '';
+  }
+
+  function mrSetTool(t) {
+    mrState.tool = t;
+    ['cursor','draw','erase'].forEach(function(id){
+      var btn = document.getElementById('mr-tool-'+id);
+      if (btn) btn.style.background = (id===t?'#0a2a4a':'');
+    });
+    mrSetStatus('Инструмент: '+(t==='cursor'?'Курсор':t==='draw'?'Рисовать клипы (кликни на дорожку)':'Ластик'));
+  }
+
+  function mrSetMasterVol(v) {
+    mrState.masterVol = parseInt(v);
+    var db = Math.round((v/100)*6-6);
+    document.getElementById('mr-master-vol-val').textContent = (db>0?'+':'')+db+'dB';
+  }
+
+  function mrAddMarker() {
+    var names = ['Intro','Verse 1','Pre-Chorus','Chorus 1','Verse 2','Chorus 2','Bridge','Outro'];
+    var used = mrState.markers.map(function(m){return m.name;});
+    var suggested = names.find(function(n){return used.indexOf(n)<0;}) || 'Маркер '+(mrState.markers.length+1);
+    var name = prompt('Имя маркера:', suggested);
+    if (!name) return;
+    mrState.markers.push({name:name, time: mrState.currentTime});
+    mrUpdateMarkers();
+    mrSetStatus('Маркер «'+name+'» добавлен на такт '+(Math.floor(mrState.currentTime/4)+1));
+  }
+
+  function mrUpdateMarkers() {
+    var list = document.getElementById('mr-markers-list');
+    if (!list) return;
+    list.innerHTML = '';
+    mrState.markers.sort(function(a,b){return a.time-b.time;}).forEach(function(m,i) {
+      var tag = document.createElement('div');
+      tag.style.cssText = 'display:inline-flex;align-items:center;gap:4px;background:#1a2a1a;border:1px solid #4aff4a;border-radius:12px;padding:2px 8px;font-size:10px;color:#4aff4a;font-family:\'JetBrains Mono\',monospace;cursor:pointer;';
+      tag.title = 'Двойной клик = перейти | ПКМ = удалить';
+      tag.textContent = '▷ '+m.name;
+      tag.ondblclick = function(){mrState.currentTime=m.time;mrUpdateTimeDisplay();mrUpdateRuler();mrRenderClips();mrSetStatus('Переход: '+m.name);};
+      tag.oncontextmenu = function(e){e.preventDefault();mrState.markers.splice(i,1);mrUpdateMarkers();};
+      list.appendChild(tag);
+    });
+  }
+
+  function mrRenameProject() {
+    var name = prompt('Название проекта:', mrState.projectName);
+    if (name) { mrState.projectName = name; document.getElementById('mr-project-name').textContent = '📁 '+name; mrSetStatus('Проект переименован: '+name); }
+  }
+
+  function mrRenameTrack(id) {
+    var t = mrState.tracks.find(function(t){return t.id===id;});
+    var name = prompt('Имя дорожки:', t?t.name:'');
+    if (name && t) { t.name = name; mrRenderTracks(); mrRenderClips(); }
+  }
+
+  function mrMuteTrack(id) {
+    var t = mrState.tracks.find(function(t){return t.id===id;});
+    if (t) { t.muted = !t.muted; mrRenderTracks(); mrSetStatus((t.muted?'Заглушена':'Включена')+' дорожка: '+t.name); }
+  }
+
+  function mrSoloTrack(id) {
+    var t = mrState.tracks.find(function(t){return t.id===id;});
+    if (t) { t.soloed = !t.soloed; mrRenderTracks(); mrSetStatus((t.soloed?'Solo ВКЛ':'Solo ВЫКЛ')+': '+t.name); }
+  }
+
+  function mrArmTrack(id) {
+    mrSetStatus('Дорожка в режиме записи. Нажмите ⏺ для начала записи.');
+  }
+
+  function mrDeleteTrack(id) {
+    if (!confirm('Удалить дорожку?')) return;
+    mrState.tracks = mrState.tracks.filter(function(t){return t.id!==id;});
+    mrState.clips = mrState.clips.filter(function(c){return c.trackId!==id;});
+    mrRenderTracks();
+    mrRenderClips();
+    mrSetStatus('Дорожка удалена');
+  }
+
+  // === PIANO ROLL ===
+  var mrPrState = {notes:[],playing:false,playStart:0,playOffset:0,rafId:null,bars:4,octaves:3,startOctave:3};
+  var mrPrCtx = null;
+  var mrPrAudioNodes = [];
+
+  function mrOpenPianoRoll() {
+    if (mrState.tracks.length === 0) { alert('Сначала добавьте MIDI-дорожку'); return; }
+    var midiTracks = mrState.tracks.filter(function(t){return t.type==='midi';});
+    if (midiTracks.length === 0) { alert('Нет MIDI-дорожек. Добавьте дорожку типа MIDI.'); return; }
+    mrOpenPianoRollForTrack(midiTracks[0].id);
+  }
+
+  function mrOpenPianoRollForTrack(id) {
+    var t = mrState.tracks.find(function(t){return t.id===id;});
+    if (!t) return;
+    mrState.activePRTrack = id;
+    document.getElementById('mr-pr-track-name').textContent = t.name;
+    document.getElementById('mr-piano-roll-modal').style.display = 'block';
+    mrPrState.notes = mrState.prNotes[id] || [];
+    mrPrBuildKeys();
+    mrPrResize();
+    mrPrDraw();
+    mrSetStatus('Piano Roll открыт: '+t.name+'. Кликни на сетке чтобы нарисовать ноту.');
+  }
+
+  function mrClosePianoRoll() {
+    if (mrState.activePRTrack) mrState.prNotes[mrState.activePRTrack] = mrPrState.notes;
+    document.getElementById('mr-piano-roll-modal').style.display = 'none';
+    mrState.activePRTrack = null;
+  }
+
+  function mrPrBuildKeys() {
+    var container = document.getElementById('mr-pr-keys');
+    container.innerHTML = '';
+    var noteNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+    var totalNotes = mrPrState.octaves * 12;
+    for (var i=0; i<totalNotes; i++) {
+      var noteIdx = totalNotes-1-i;
+      var octave = mrPrState.startOctave + Math.floor(noteIdx/12);
+      var noteName = noteNames[noteIdx%12];
+      var isBlack = noteName.includes('#');
+      var div = document.createElement('div');
+      div.style.cssText = 'height:16px;display:flex;align-items:center;justify-content:flex-end;padding-right:5px;font-size:8px;font-family:\'JetBrains Mono\',monospace;border-bottom:1px solid #1a1a1a;cursor:pointer;white-space:nowrap;background:'+(isBlack?'#111':'#1e1e1e')+';color:'+(isBlack?'#666':'#888')+';';
+      div.textContent = noteName+octave;
+      div.onmouseenter = function(){this.style.background='rgba(74,158,255,0.2)';this.style.color='#4a9eff';};
+      div.onmouseleave = function(n,b){return function(){this.style.background=(b?'#111':'#1e1e1e');this.style.color=(b?'#666':'#888');};}(noteIdx,isBlack);
+      container.appendChild(div);
+    }
+  }
+
+  function mrPrResize() {
+    var canvas = document.getElementById('mr-pr-canvas');
+    var velCanvas = document.getElementById('mr-pr-vel-canvas');
+    var cont = document.getElementById('mr-piano-roll-modal');
+    if (!canvas||!cont) return;
+    var w = cont.clientWidth - 52 - 20;
+    canvas.width = Math.max(w, 400);
+    canvas.height = mrPrState.octaves * 12 * 16;
+    if (velCanvas) { velCanvas.width = Math.max(w, 400); velCanvas.height = 48; }
+    mrPrDraw();
+  }
+
+  function mrPrDraw() {
+    var canvas = document.getElementById('mr-pr-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height;
+    var totalNotes = mrPrState.octaves*12;
+    var noteH = H/totalNotes;
+    var beatsTotal = mrPrState.bars*4;
+    var beatW = W/beatsTotal;
+    ctx.clearRect(0,0,W,H);
+    // Background rows
+    var noteNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+    for (var i=0;i<totalNotes;i++) {
+      var nn = noteNames[(totalNotes-1-i)%12];
+      var isB = nn.includes('#');
+      ctx.fillStyle = isB ? '#111' : '#161616';
+      ctx.fillRect(0,i*noteH,W,noteH-1);
+      if (nn==='C') { ctx.fillStyle='rgba(74,158,255,0.06)'; ctx.fillRect(0,i*noteH,W,noteH); }
+    }
+    // Grid lines
+    for (var b=0;b<=beatsTotal;b++) {
+      ctx.fillStyle = b%4===0?'#2a2a2a':'#1e1e1e';
+      ctx.fillRect(b*beatW,0,1,H);
+    }
+    // Playhead
+    if (mrPrState.playing) {
+      var elapsed = (performance.now()-mrPrState.playStart)/1000;
+      var beatsPerSec = mrState.bpm/60;
+      var pos = mrPrState.playOffset + elapsed*beatsPerSec;
+      if (pos < beatsTotal) {
+        ctx.fillStyle = 'rgba(255,100,50,0.7)';
+        ctx.fillRect(pos*beatW-1,0,2,H);
+      }
+    }
+    // Notes
+    mrPrState.notes.forEach(function(n) {
+      var noteIdx = totalNotes-1-n.row;
+      var x = n.beat*beatW, y = noteIdx*noteH;
+      var nw = (n.len||1)*beatW-2;
+      var vel = (n.vel||100)/127;
+      ctx.fillStyle = 'rgba(74,158,255,'+( 0.5+vel*0.5)+')';
+      ctx.fillRect(x+1,y+2,nw,noteH-4);
+      ctx.fillStyle = 'rgba(255,255,255,0.6)';
+      ctx.fillRect(x+1,y+2,3,noteH-4);
+    });
+    // Velocity
+    var velC = document.getElementById('mr-pr-vel-canvas');
+    if (velC) {
+      var vc = velC.getContext('2d');
+      vc.clearRect(0,0,velC.width,velC.height);
+      vc.fillStyle = '#0d0d0d';
+      vc.fillRect(0,0,velC.width,velC.height);
+      mrPrState.notes.forEach(function(n) {
+        var x = n.beat*beatW;
+        var vel = (n.vel||100)/127;
+        var h = vel*velC.height*0.9;
+        vc.fillStyle = 'rgba(74,158,255,0.7)';
+        vc.fillRect(x+1,velC.height-h,Math.max(beatW*( n.len||1)-4,4),h);
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var canvas = document.getElementById('mr-pr-canvas');
+    if (canvas) {
+      canvas.addEventListener('mousedown', function(e){
+        var rect = canvas.getBoundingClientRect();
+        var W = canvas.width, H = canvas.height;
+        var totalNotes = mrPrState.octaves*12;
+        var beatsTotal = mrPrState.bars*4;
+        var beatW = W/beatsTotal;
+        var noteH = H/totalNotes;
+        var beatPos = (e.clientX-rect.left)/rect.width*beatsTotal;
+        var notePos = Math.floor((e.clientY-rect.top)/rect.height*totalNotes);
+        var q = parseFloat(document.getElementById('mr-pr-quantize').value||0.25);
+        beatPos = Math.floor(beatPos/q)*q;
+        beatPos = Math.max(0,Math.min(beatPos,beatsTotal-q));
+        if (e.button===2) {
+          // Right click = delete
+          mrPrState.notes = mrPrState.notes.filter(function(n){return !(Math.abs(n.beat-beatPos)<q && n.row===notePos);});
+        } else {
+          // Check exists
+          var exists = mrPrState.notes.find(function(n){return n.beat===beatPos&&n.row===notePos;});
+          if (!exists) mrPrState.notes.push({beat:beatPos,row:notePos,len:q,vel:100});
+        }
+        mrPrDraw();
+        if (mrState.activePRTrack) mrState.prNotes[mrState.activePRTrack] = mrPrState.notes;
+      });
+      canvas.addEventListener('contextmenu', function(e){e.preventDefault();});
+    }
+  });
+
+  function mrPrPlay() {
+    if (mrPrState.playing) {
+      mrPrState.playing=false;
+      mrPrAudioNodes.forEach(function(n){try{n.stop();}catch(e){}});
+      mrPrAudioNodes=[];
+      cancelAnimationFrame(mrPrState.rafId);
+      document.getElementById('mr-pr-play-btn').textContent='▶ Играть';
+      mrPrDraw();
+      return;
+    }
+    if (!mrPrCtx) mrPrCtx = new (window.AudioContext||window.webkitAudioContext)();
+    mrPrState.playing=true;
+    mrPrState.playStart=performance.now();
+    mrPrState.playOffset=0;
+    document.getElementById('mr-pr-play-btn').textContent='⏸ Стоп';
+    var beatsPerSec = mrState.bpm/60;
+    var beatsTotal = mrPrState.bars*4;
+    var noteNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+    var totalNotes = mrPrState.octaves*12;
+    var baseFreq = 261.63 * Math.pow(2, mrPrState.startOctave-4);
+    mrPrState.notes.forEach(function(n) {
+      var osc = mrPrCtx.createOscillator();
+      var gain = mrPrCtx.createGain();
+      osc.type = document.getElementById('mr-pr-sound').value||'sine';
+      var noteIdx = n.row;
+      var semiFromC = (totalNotes-1-noteIdx);
+      osc.frequency.value = baseFreq * Math.pow(2, semiFromC/12);
+      gain.gain.value = (n.vel||100)/127*0.3;
+      var startT = mrPrCtx.currentTime + n.beat/beatsPerSec;
+      var durT = (n.len||0.25)/beatsPerSec;
+      gain.gain.setTargetAtTime(0, startT+durT*0.8, 0.05);
+      osc.connect(gain);
+      gain.connect(mrPrCtx.destination);
+      osc.start(startT);
+      osc.stop(startT+durT+0.2);
+      mrPrAudioNodes.push(osc);
+    });
+    var totalDur = beatsTotal/beatsPerSec;
+    setTimeout(function(){
+      mrPrState.playing=false;
+      cancelAnimationFrame(mrPrState.rafId);
+      document.getElementById('mr-pr-play-btn').textContent='▶ Играть';
+      mrPrDraw();
+    }, totalDur*1000+200);
+    function loop(){
+      if(!mrPrState.playing) return;
+      mrPrDraw();
+      mrPrState.rafId=requestAnimationFrame(loop);
+    }
+    loop();
+  }
+
+  function mrPrQuantize() {
+    var q = parseFloat(document.getElementById('mr-pr-quantize').value||0.25);
+    mrPrState.notes = mrPrState.notes.map(function(n){return Object.assign({},n,{beat:Math.round(n.beat/q)*q,len:q});});
+    mrPrDraw();
+    if (mrState.activePRTrack) mrState.prNotes[mrState.activePRTrack] = mrPrState.notes;
+    mrSetStatus('Квантайз применён: 1/'+(1/q));
+  }
+
+  function mrPrClear() {
+    if (!confirm('Очистить все ноты?')) return;
+    mrPrState.notes=[];
+    mrPrDraw();
+    if (mrState.activePRTrack) mrState.prNotes[mrState.activePRTrack]=[];
+  }
+
+  // === MIXER ===
+  function mrOpenMixer() {
+    document.getElementById('mr-mixer-modal').style.display='block';
+    mrRenderMixer();
+  }
+  function mrCloseMixer() { document.getElementById('mr-mixer-modal').style.display='none'; }
+
+  function mrRenderMixer() {
+    var ch = document.getElementById('mr-mixer-channels');
+    if (!ch) return;
+    ch.innerHTML='';
+    var allTracks = mrState.tracks.concat([{id:'master',name:'Master',color:'#4a9eff',vol:mrState.masterVol,pan:50,muted:false,soloed:false}]);
+    allTracks.forEach(function(t) {
+      var vol = t.id==='master' ? mrState.masterVol : (mrState.mixerState[t.id]?mrState.mixerState[t.id].vol:80);
+      var pan = mrState.mixerState[t.id] ? mrState.mixerState[t.id].pan : 50;
+      var strip = document.createElement('div');
+      strip.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:6px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:4px;padding:8px 6px;min-width:60px;border-top:3px solid '+(t.id==='master'?'#4a9eff':t.color)+';';
+      var volPct = vol/100*140;
+      strip.innerHTML =
+        '<span style="font-size:9px;color:#888;font-family:\'JetBrains Mono\',monospace;text-align:center;max-width:56px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+t.name+'">'+t.name+'</span>'+
+        '<input type="range" min="0" max="100" value="'+vol+'" orient="vertical" style="writing-mode:vertical-lr;direction:rtl;height:100px;width:20px;cursor:pointer;" oninput="mrMixerVol(\''+t.id+'\',this.value)" title="Громкость">'+
+        '<span style="font-size:9px;color:#4a9eff;font-family:\'JetBrains Mono\',monospace;" id="mr-mix-vol-'+t.id+'">'+Math.round((vol/100)*6-6)+'dB</span>'+
+        '<input type="range" min="0" max="100" value="'+pan+'" style="width:50px;cursor:pointer;" oninput="mrMixerPan(\''+t.id+'\',this.value)" title="Панорама L–R">'+
+        '<span style="font-size:9px;color:#888;">Pan</span>';
+      ch.appendChild(strip);
+    });
+  }
+
+  function mrMixerVol(id, v) {
+    if (id==='master') { mrState.masterVol=parseInt(v); document.getElementById('mr-master-vol').value=v; mrSetMasterVol(v); }
+    else if (mrState.mixerState[id]) mrState.mixerState[id].vol=parseInt(v);
+    var el = document.getElementById('mr-mix-vol-'+id);
+    if (el) el.textContent = Math.round((v/100)*6-6)+'dB';
+  }
+  function mrMixerPan(id, v) { if (mrState.mixerState[id]) mrState.mixerState[id].pan=parseInt(v); }
+
+  // === FX ===
+  function mrOpenFX() {
+    if (mrState.tracks.length===0){alert('Нет дорожек');return;}
+    mrOpenFXForTrack(mrState.tracks[0].id);
+  }
+  function mrOpenFXForTrack(id) {
+    mrState.activeFXTrack=id;
+    var t=mrState.tracks.find(function(t){return t.id===id;});
+    document.getElementById('mr-fx-track-name').textContent=t?t.name:'';
+    document.getElementById('mr-fx-modal').style.display='block';
+    mrRenderFXChain();
+  }
+  function mrCloseFX(){document.getElementById('mr-fx-modal').style.display='none';}
+
+  function mrRenderFXChain() {
+    var id=mrState.activeFXTrack;
+    var ch=document.getElementById('mr-fx-chain');
+    if(!ch||!id)return;
+    ch.innerHTML='';
+    var chain=mrState.fxChains[id]||[];
+    if(chain.length===0){ch.innerHTML='<p style="color:#444;font-size:12px;font-family:\'JetBrains Mono\',monospace;">FX-цепочка пуста. Добавьте плагины снизу.</p>';return;}
+    chain.forEach(function(fx,i){
+      var div=document.createElement('div');
+      div.style.cssText='background:#1a1a2a;border:1px solid #2a2a3a;border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px;';
+      div.innerHTML='<span style="font-size:12px;color:#4a9eff;font-family:\'JetBrains Mono\',monospace;flex:1;">'+fx.name+'</span>'+mrFXControls(fx,i);
+      ch.appendChild(div);
+    });
+  }
+
+  function mrFXControls(fx,i) {
+    var id=mrState.activeFXTrack;
+    var html='<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">';
+    if(fx.type==='eq'){
+      html+='<label style="font-size:10px;color:#888;">Low Cut Hz: <input type="range" min="20" max="500" value="'+(fx.lowCut||80)+'" style="width:60px;" oninput="mrFXParam(\''+id+'\','+i+',\'lowCut\',this.value)"> <span style="color:#4a9eff;">'+(fx.lowCut||80)+'Hz</span></label>';
+      html+='<label style="font-size:10px;color:#888;">Hi Shelf dB: <input type="range" min="-12" max="12" value="'+(fx.hiShelf||0)+'" style="width:60px;" oninput="mrFXParam(\''+id+'\','+i+',\'hiShelf\',this.value)"> <span style="color:#4a9eff;">'+(fx.hiShelf||0)+'dB</span></label>';
+    } else if(fx.type==='comp'){
+      html+='<label style="font-size:10px;color:#888;">Threshold: <input type="range" min="-60" max="0" value="'+(fx.threshold||-20)+'" style="width:60px;" oninput="mrFXParam(\''+id+'\','+i+',\'threshold\',this.value)"> <span style="color:#4a9eff;">'+(fx.threshold||-20)+'dB</span></label>';
+      html+='<label style="font-size:10px;color:#888;">Ratio: <input type="range" min="1" max="20" value="'+(fx.ratio||4)+'" style="width:60px;" oninput="mrFXParam(\''+id+'\','+i+',\'ratio\',this.value)"> <span style="color:#4a9eff;">'+(fx.ratio||4)+':1</span></label>';
+    } else if(fx.type==='reverb'){
+      html+='<label style="font-size:10px;color:#888;">Room Size: <input type="range" min="0" max="100" value="'+(fx.roomSize||40)+'" style="width:60px;" oninput="mrFXParam(\''+id+'\','+i+',\'roomSize\',this.value)"> <span style="color:#4a9eff;">'+(fx.roomSize||40)+'%</span></label>';
+      html+='<label style="font-size:10px;color:#888;">Wet: <input type="range" min="0" max="100" value="'+(fx.wet||30)+'" style="width:60px;" oninput="mrFXParam(\''+id+'\','+i+',\'wet\',this.value)"> <span style="color:#4a9eff;">'+(fx.wet||30)+'%</span></label>';
+    } else if(fx.type==='delay'){
+      html+='<label style="font-size:10px;color:#888;">Time ms: <input type="range" min="10" max="1000" value="'+(fx.time||250)+'" style="width:60px;" oninput="mrFXParam(\''+id+'\','+i+',\'time\',this.value)"> <span style="color:#4a9eff;">'+(fx.time||250)+'ms</span></label>';
+      html+='<label style="font-size:10px;color:#888;">Feedback: <input type="range" min="0" max="95" value="'+(fx.feedback||40)+'" style="width:60px;" oninput="mrFXParam(\''+id+'\','+i+',\'feedback\',this.value)"> <span style="color:#4a9eff;">'+(fx.feedback||40)+'%</span></label>';
+    } else if(fx.type==='limiter'){
+      html+='<label style="font-size:10px;color:#888;">Ceiling: <input type="range" min="-12" max="0" value="'+(fx.ceiling||-1)+'" step="0.5" style="width:60px;" oninput="mrFXParam(\''+id+'\','+i+',\'ceiling\',this.value)"> <span style="color:#4a9eff;">'+(fx.ceiling||-1)+'dBTP</span></label>';
+    }
+    html+='<button style="background:none;border:1px solid #cc2222;color:#cc2222;border-radius:3px;padding:2px 7px;font-size:10px;cursor:pointer;" onclick="mrRemoveFX(\''+id+'\','+i+')">✕</button>';
+    html+='</div>';
+    return html;
+  }
+
+  function mrFXParam(trackId, fxIdx, param, val) {
+    var chain = mrState.fxChains[trackId];
+    if (chain&&chain[fxIdx]) {
+      chain[fxIdx][param]=parseFloat(val);
+      mrRenderFXChain();
+    }
+  }
+
+  function mrAddFXPlugin(type, name) {
+    var id=mrState.activeFXTrack;
+    if(!id){alert('Выберите дорожку');return;}
+    if(!mrState.fxChains[id]) mrState.fxChains[id]=[];
+    mrState.fxChains[id].push({type:type,name:name});
+    mrRenderFXChain();
+    mrSetStatus('Добавлен '+name+' на дорожку.');
+  }
+
+  function mrAddEQ(){mrAddFXPlugin('eq','ReaEQ — Эквалайзер');}
+  function mrAddComp(){mrAddFXPlugin('comp','ReaComp — Компрессор');}
+  function mrAddReverb(){mrAddFXPlugin('reverb','ReaVerb — Реверберация');}
+  function mrAddDelay(){mrAddFXPlugin('delay','ReaDelay — Задержка');}
+  function mrAddLimiter(){mrAddFXPlugin('limiter','Лимитер');}
+  function mrRemoveFX(trackId,i){mrState.fxChains[trackId].splice(i,1);mrRenderFXChain();}
+
+  // === RENDER ===
+  function mrRender(){document.getElementById('mr-render-modal').style.display='block';}
+  function mrCloseRender(){document.getElementById('mr-render-modal').style.display='none';}
+
+  function mrDoRender() {
+    var prog = document.getElementById('mr-render-progress');
+    var bar = document.getElementById('mr-render-bar');
+    var status = document.getElementById('mr-render-status');
+    var fmt = document.getElementById('mr-render-format').value;
+    var src = document.getElementById('mr-render-source').value;
+    prog.style.display='block';
+    bar.style.width='0%';
+    status.textContent='Подготовка...';
+    var steps = ['Анализ дорожек...','Применение FX-цепочек...','Обработка мастер-шины...','Кодирование аудио...','Запись файла...','Готово!'];
+    var pcts = [10,30,55,75,90,100];
+    var i=0;
+    function step(){
+      if(i>=steps.length){
+        mrSetStatus('✅ Рендеринг завершён! Файл: '+mrState.projectName+'.'+(fmt==='wav'?'wav':fmt==='mp3'?'mp3':'flac')+' ('+src+')');
+        return;
+      }
+      bar.style.width=pcts[i]+'%';
+      status.textContent=steps[i];
+      i++;
+      setTimeout(step, 400);
+    }
+    setTimeout(step,200);
+  }
+
+  function mrSetStatus(msg) {
+    var el=document.getElementById('mr-status');
+    if(el){el.textContent='> '+msg;}
+  }
+
+  // Keyboard shortcuts for mini reaper
+  document.addEventListener('keydown',function(e){
+    var modal=document.getElementById('mr-piano-roll-modal');
+    if(modal&&modal.style.display!=='none') return; // PR open, skip
+    if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'||e.target.tagName==='TEXTAREA') return;
+    if(e.code==='Space'){e.preventDefault();mrTogglePlay();}
+    if(e.code==='KeyM'){e.preventDefault();mrAddMarker();}
+    if(e.code==='KeyT'&&e.ctrlKey){e.preventDefault();mrAddTrack();}
+  });
+
+  // Init on load
+  window.addEventListener('load',function(){
+    var elem=document.getElementById('mini-reaper');
+    if(elem){ mrInit(); mrUpdateTimeDisplay(); }
+  });
+  </script>
 
   <!-- PIANO ROLL PAGE -->
   <div id="page-piano" class="page">
@@ -2084,7 +3071,6 @@ function showPage(id) {
 
   if (id === 'piano') initPianoRoll();
   if (id === 'reaper-ui') initReaperUI();
-  if (id === 'lec5') { setTimeout(initPianoRollLec5, 100); }
   if (id === 'lec2') { setTimeout(initReaperUILec2, 100); }
   if (id === 'audio-editor') { /* drop zone label wraps input, click handled natively */ }
   if (id === 'test') {}
@@ -2698,218 +3684,10 @@ function rTogglePlayLec2() {
   }
 }
 
-// ===== LEC5 PIANO ROLL =====
-let prNotesL5 = [], prPlayingL5 = false, prAudioCtxL5 = null, prPlayScheduledL5 = [];
-let prPlayPosL5 = 0, prPlayStartTimeL5 = 0, prPlayRafL5 = null;
-const PR_L5_ROWS = 36, PR_L5_ROW_H = 20, PR_L5_COLS = 32, PR_L5_COL_W = 40, PR_L5_FROM = 48;
 
-function initPianoRollLec5() {
-  const canvas = document.getElementById('pr-canvas-lec5');
-  const cont = document.getElementById('pr-grid-container-lec5');
-  if (!canvas || canvas.dataset.init) return;
-  canvas.dataset.init = '1';
-  canvas.width = PR_L5_COLS * PR_L5_COL_W;
-  canvas.height = PR_L5_ROWS * PR_L5_ROW_H;
-  canvas.style.width = canvas.width + 'px';
-  canvas.style.height = canvas.height + 'px';
+// ===== AUDIO EDITOR =====
 
-  const vc = document.getElementById('vel-canvas-lec5');
-  vc.width = PR_L5_COLS * PR_L5_COL_W; vc.style.width = vc.width + 'px';
 
-  const keys = document.getElementById('pr-keys-lec5');
-  keys.innerHTML = '';
-  const noteNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
-  for (let i = PR_L5_ROWS - 1; i >= 0; i--) {
-    const midi = PR_L5_FROM + i;
-    const name = noteNames[midi % 12];
-    const isBlack = name.includes('#');
-    const div = document.createElement('div');
-    div.className = 'pr-key ' + (isBlack ? 'black-key' : 'white-key');
-    div.textContent = name + Math.floor(midi / 12 - 1);
-    div.onclick = () => prPlayNoteL5(midi);
-    keys.appendChild(div);
-  }
-
-  prDrawL5();
-  canvas.addEventListener('mousedown', prMouseDownL5);
-  canvas.addEventListener('contextmenu', e => { e.preventDefault(); prRClickL5(e); });
-  vc.addEventListener('mousedown', prVelMouseL5);
-}
-
-function prRowPitchL5(row) { return PR_L5_FROM + (PR_L5_ROWS - 1 - row); }
-function prPitchRowL5(pitch) { return PR_L5_ROWS - 1 - (pitch - PR_L5_FROM); }
-
-function prMouseDownL5(e) {
-  if (e.button !== 0) return;
-  const cont = document.getElementById('pr-grid-container-lec5');
-  const rect = cont.getBoundingClientRect();
-  const x = (e.clientX - rect.left) + cont.scrollLeft, y = (e.clientY - rect.top) + cont.scrollTop;
-  const col = Math.floor(x / PR_L5_COL_W), row = Math.floor(y / PR_L5_ROW_H);
-  const q = parseFloat(document.getElementById('pr-quantize-lec5').value);
-  const start = Math.round(col / (PR_L5_COL_W * q)) * q;
-  const pitch = prRowPitchL5(row);
-  const existing = prNotesL5.findIndex(n => n.pitch === pitch && Math.abs(n.start - start) < 0.01);
-  if (existing >= 0) { prNotesL5.splice(existing, 1); }
-  else { prNotesL5.push({ pitch, start, duration: q, velocity: 100 }); prPlayNoteL5(pitch); }
-  prDrawL5();
-}
-
-function prRClickL5(e) {
-  const cont = document.getElementById('pr-grid-container-lec5');
-  const rect = cont.getBoundingClientRect();
-  const x = (e.clientX - rect.left) + cont.scrollLeft, y = (e.clientY - rect.top) + cont.scrollTop;
-  const col = Math.floor(x / PR_L5_COL_W), row = Math.floor(y / PR_L5_ROW_H);
-  const pitch = prRowPitchL5(row);
-  const q = parseFloat(document.getElementById('pr-quantize-lec5').value);
-  const start = Math.round(col / (PR_L5_COL_W * q)) * q;
-  const idx = prNotesL5.findIndex(n => n.pitch === pitch && Math.abs(n.start - start) < 0.01);
-  if (idx >= 0) { prNotesL5.splice(idx, 1); prDrawL5(); }
-}
-
-function prVelMouseL5(e) {
-  const vc = document.getElementById('vel-canvas-lec5');
-  const rect = vc.getBoundingClientRect();
-  const sx = vc.width / rect.width;
-  const x = (e.clientX - rect.left) * sx;
-  const col = Math.floor(x / PR_L5_COL_W);
-  function onMove(ev) {
-    const y = ev.clientY - rect.top;
-    const vel = Math.max(1, Math.min(127, Math.round((1 - y / rect.height) * 127)));
-    prNotesL5.filter(n => Math.floor(n.start * PR_L5_COL_W / 1) === col || Math.floor(n.start) === col).forEach(n => n.velocity = vel);
-    prNotesL5.forEach(n => { if (Math.floor(n.start * (1/1)) === Math.floor(x/PR_L5_COL_W)) n.velocity = vel; });
-    prDrawL5();
-  }
-  document.addEventListener('mousemove', onMove);
-  document.addEventListener('mouseup', () => document.removeEventListener('mousemove', onMove), {once:true});
-}
-
-function prDrawL5() {
-  const canvas = document.getElementById('pr-canvas-lec5');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const noteNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
-
-  ctx.fillStyle = '#0d0d18'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  for (let r = 0; r < PR_L5_ROWS; r++) {
-    const midi = prRowPitchL5(r);
-    const name = noteNames[midi % 12];
-    if (name.includes('#')) { ctx.fillStyle = 'rgba(0,0,0,0.25)'; ctx.fillRect(0, r*PR_L5_ROW_H, canvas.width, PR_L5_ROW_H); }
-    if (name === 'C') { ctx.fillStyle = 'rgba(255,255,255,0.06)'; ctx.fillRect(0, r*PR_L5_ROW_H, canvas.width, PR_L5_ROW_H); }
-  }
-
-  ctx.strokeStyle = 'rgba(255,255,255,0.05)'; ctx.lineWidth = 1;
-  for (let c = 0; c <= PR_L5_COLS; c++) { ctx.beginPath(); ctx.moveTo(c*PR_L5_COL_W,0); ctx.lineTo(c*PR_L5_COL_W,canvas.height); ctx.stroke(); }
-  for (let r = 0; r <= PR_L5_ROWS; r++) { ctx.beginPath(); ctx.moveTo(0,r*PR_L5_ROW_H); ctx.lineTo(canvas.width,r*PR_L5_ROW_H); ctx.stroke(); }
-
-  prNotesL5.forEach(n => {
-    const row = prPitchRowL5(n.pitch);
-    const x = n.start * PR_L5_COL_W, y = row * PR_L5_ROW_H;
-    const w = n.duration * PR_L5_COL_W - 2, h = PR_L5_ROW_H - 2;
-    const alpha = 0.5 + (n.velocity / 127) * 0.5;
-    ctx.fillStyle = `rgba(79,195,247,${alpha})`;
-    ctx.beginPath(); ctx.roundRect(x+1, y+1, w, h, 3); ctx.fill();
-    ctx.fillStyle = 'rgba(255,255,255,0.8)';
-    ctx.font = '8px JetBrains Mono'; ctx.fillText(['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'][n.pitch%12], x+3, y+PR_L5_ROW_H-4);
-  });
-
-  // Playhead
-  if (prPlayingL5 || prPlayPosL5 > 0) {
-    const px = prPlayPosL5 * PR_L5_COL_W;
-    ctx.strokeStyle = 'rgba(255,112,67,0.9)'; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, canvas.height); ctx.stroke();
-  }
-
-  // Velocity
-  const vc = document.getElementById('vel-canvas-lec5');
-  if (!vc) return;
-  const vctx = vc.getContext('2d');
-  vctx.fillStyle = '#0d0d18'; vctx.fillRect(0, 0, vc.width, vc.height);
-  prNotesL5.forEach(n => {
-    const x = n.start * PR_L5_COL_W;
-    const h = (n.velocity / 127) * vc.height;
-    vctx.fillStyle = 'rgba(79,195,247,0.7)';
-    vctx.fillRect(x+1, vc.height - h, PR_L5_COL_W - 3, h);
-  });
-}
-
-function prPlayNoteL5(midi) {
-  if (!prAudioCtxL5) prAudioCtxL5 = new (window.AudioContext || window.webkitAudioContext)();
-  const osc = prAudioCtxL5.createOscillator();
-  const gain = prAudioCtxL5.createGain();
-  const type = document.getElementById('pr-instrument-lec5').value;
-  osc.type = type; osc.frequency.value = 440 * Math.pow(2, (midi - 69) / 12);
-  gain.gain.setValueAtTime(0.3, prAudioCtxL5.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.001, prAudioCtxL5.currentTime + 0.5);
-  osc.connect(gain); gain.connect(prAudioCtxL5.destination);
-  osc.start(); osc.stop(prAudioCtxL5.currentTime + 0.5);
-}
-
-function prTogglePlayLec5() {
-  if (!prAudioCtxL5) prAudioCtxL5 = new (window.AudioContext || window.webkitAudioContext)();
-  prPlayingL5 = !prPlayingL5;
-  const btn = document.getElementById('pr-play-btn-lec5');
-  if (prPlayingL5) {
-    btn.textContent = '⏸ Стоп'; btn.classList.add('play-active');
-    prPlayScheduledL5.forEach(n => { try { n.osc.stop(); } catch(e){} });
-    prPlayScheduledL5 = [];
-    const startBeat = prPlayPosL5;
-    prPlayStartTimeL5 = prAudioCtxL5.currentTime - startBeat * 0.5;
-    const tempo = 0.5; // seconds per beat
-    prNotesL5.forEach(n => {
-      const t = prPlayStartTimeL5 + n.start * tempo;
-      if (t < prAudioCtxL5.currentTime) return;
-      const osc = prAudioCtxL5.createOscillator();
-      const gain = prAudioCtxL5.createGain();
-      osc.type = document.getElementById('pr-instrument-lec5').value;
-      osc.frequency.value = 440 * Math.pow(2, (n.pitch - 69) / 12);
-      const vel = n.velocity / 127 * 0.4;
-      gain.gain.setValueAtTime(vel, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + n.duration * tempo);
-      osc.connect(gain); gain.connect(prAudioCtxL5.destination);
-      osc.start(t); osc.stop(t + n.duration * tempo + 0.01);
-      prPlayScheduledL5.push({osc, gain});
-    });
-    const totalBeats = PR_L5_COLS;
-    function tick() {
-      if (!prPlayingL5) return;
-      const elapsed = prAudioCtxL5.currentTime - prPlayStartTimeL5;
-      prPlayPosL5 = elapsed / tempo;
-      const pct = prPlayPosL5 / totalBeats;
-      document.getElementById('pr-seek-fill-lec5').style.width = Math.min(pct*100,100) + '%';
-      document.getElementById('pr-seek-head-lec5').style.left = Math.min(pct*100,100) + '%';
-      document.getElementById('pr-time-lec5').textContent = elapsed.toFixed(2) + 's';
-      prDrawL5();
-      if (prPlayPosL5 >= totalBeats) { prStopPlayLec5(); return; }
-      prPlayRafL5 = requestAnimationFrame(tick);
-    }
-    prPlayRafL5 = requestAnimationFrame(tick);
-  } else {
-    prStopPlayLec5();
-  }
-}
-
-function prStopPlayLec5() {
-  prPlayingL5 = false;
-  if (prPlayRafL5) cancelAnimationFrame(prPlayRafL5);
-  prPlayScheduledL5.forEach(n => { try { n.osc.stop(); } catch(e){} });
-  prPlayScheduledL5 = [];
-  const btn = document.getElementById('pr-play-btn-lec5');
-  if (btn) { btn.textContent = '▶ Играть'; btn.classList.remove('play-active'); }
-  prPlayPosL5 = 0;
-  document.getElementById('pr-seek-fill-lec5').style.width = '0%';
-  document.getElementById('pr-seek-head-lec5').style.left = '0%';
-  document.getElementById('pr-time-lec5').textContent = '0.00s';
-  prDrawL5();
-}
-
-function prClearLec5() { prNotesL5 = []; prPlayPosL5 = 0; prDrawL5(); }
-
-function prQuantizeAllLec5() {
-  const q = parseFloat(document.getElementById('pr-quantize-lec5').value);
-  prNotesL5.forEach(n => { n.start = Math.round(n.start / q) * q; n.duration = q; });
-  prDrawL5();
-}
 
 // ===== AUDIO EDITOR =====
 let aeAudioCtx = null, aeBuffer = null, aeSource = null, aeGainNode = null, aeLPFilter = null, aeNoiseFilter = null;
